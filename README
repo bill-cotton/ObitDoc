@@ -1,0 +1,13 @@
+The VLBA Pipeline Manual is typeset using Latex.
+
+This document uses the IEEE Latex style file (Unix LaTeX2e Transactions Style File).  The IEEE class file is included; documentation on this class can be found here:
+
+http://www.ieee.org/publications_standards/publications/authors/authors_journals.html
+
+Documentation of Python modules in the appendix of this manual is generated using epydoc.
+
+http://epydoc.sourceforge.net/
+
+Epydoc generates latex files from Python docstrings.  An example command invoking epydoc to generate documentation for the VLBACal module is,
+
+epydoc --latex --docformat plaintext VLBACal.py
