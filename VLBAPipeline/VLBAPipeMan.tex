@@ -19,40 +19,8 @@
 % *** CITATION PACKAGES ***
 %
 \usepackage{cite}
-% cite.sty was written by Donald Arseneau
-% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
-% \cite{} output to follow that of IEEE. Loading the cite package will
-% result in citation numbers being automatically sorted and properly
-% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
-% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
-% \cite will automatically add leading space, if needed. Use cite.sty's
-% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
-% cite.sty is already installed on most LaTeX systems. Be sure and use
-% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
-% not currently provide for hyperlinked citations.
-% The latest version can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
-% The documentation is contained in the cite.sty file itself.
-
-% *** GRAPHICS RELATED PACKAGES ***
-%
 \ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
 \else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  % \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
 \fi
 
 
@@ -164,7 +132,7 @@ The VLBA Pipeline is an automated data reduction software system for VLBA visibi
 %for IEEE journal papers produced under \LaTeX\ using
 %IEEEtran.cls version 1.7 and later.
 
-The Very Long Baseline Array (VLBA) Pipeline is an automated data reduction system for VLBA data.  The primary goal of the pipeline is to generate end-user data products, such as images and spectra, from raw VLBA visibility data.  The pipeline also generates diagnostic information to aid end users in assessing quality of the primary data products.
+The Very Long Baseline Array (VLBA) Pipeline is an automated data reduction system for VLBA data.  The primary goal of the pipeline is to generate end-user data products, such as images, from raw VLBA visibility data.  The pipeline also generates diagnostic information to aid end users in assessing quality of the primary data products.
 
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
@@ -178,57 +146,41 @@ The Very Long Baseline Array (VLBA) Pipeline is an automated data reduction syst
 
 \section{Pipeline Installation and Execution}
 
-The pipeline software is part of the larger Obit package\cite{Cotton:Obit}.  To use the pipeline first install Obit\footnote{\tt http://www.cv.nrao.edu/{\tilde}bcotton/Obit.html}.  The pipeline scripts are described in section \ref{files}, below.  Assuming the scripts are copied to a common working directory and the input parameters ({\tt params.py} and {\tt AIPSSetup.py}) properly setup, the pipeline can be started with the command
+The pipeline software is part of the larger Obit package\cite{Cotton:Obit}.  To use the pipeline first install Obit\footnote{\tt http://www.cv.nrao.edu/{\tilde}bcotton/Obit.html}.  The pipeline scripts are described in section \ref{files}, below.  Assuming the scripts are copied to a common working directory and the input parameters ({\tt params.py} and {\tt AIPSSetup.py}) properly modified to suit the data of interest and the local computing environment, the pipeline can be started with the command
 \begin{quote}\tt python VLBAContPipe.py AIPSSetup.py parms.py\end{quote}
 from the shell command line.
 
 \section{Data Reduction Process}
 
-The pipeline processes are described here in run-time order.
+During early development, the details of the data reduction process are likely to change, but the general method will remain the same.  The method is as follows.
 
-\begin{enumerate}
-\item Load data.  Data can be loaded from a single FITS IDI file on disk, or from the AIPS catalog.  (doLoadIDI)
-\item Delete any previous calibration and editing tables (SN, CL, BP, FG) that were performed on this data set. (doClearTab)
-\item Optionally copy flag table (FG) version 1 to flag table version 2.  (doCopyFG)
-\item Flag any data already known to be bad.  This bad data must be specified using the editList parameter. (doEditList)
-\item Flag beginning and end of each scan, if desired.  (doQuack)
-% The following item is only done for spectral line data.
-%\item Add frequency and velocity information.  (doFreqInfo)  This information must be specified in the pipeline parameters restfreq and srcVel.
-\item Apply a quantization correction with the smoothing time and flagging threshold specified as QuantSmo and QuantFlag, respectively.  (doQuantCor)
-\item Make parallactic angle correction, if desired.  (doPACor)
-\item Make an opacity and gain correction.  (doOpacCor)
-\item Find the best calibration source, time range, and reference antenna. (doFindCal)
-\item Perform manual phase calibration.  (doManPCal)
-\item Perform bandpass calibration.  (doBPCal)
-\item Image calibration sources.  (doImgCal)
-\item Create models using images of the calibrator sources.
-\item Determine delay corrections using calibrators.  (doDelayCal)
-\item Determine amplitude calibration from calibrators.  (doAmpCal)
-\item Calibrate and average data.  Use CalAvgTime to specify number of seconds over which averaging should be done.  (doCalAvg)
-\item Optionally write uv data to a FITS file.  (doSaveUV)
-\item Optionally write tables (without data) to a FITS file.  (doSaveTab)
-\item Optionally delete data files.  (doCleanup)
-\item Ouput FITS files for each of the continuum calibrators.  (doSavImg)
-\end{enumerate}
+Data is loaded from FITS IDI or FITS AIPS files into an AIPS catalog.  Old calibration and editing tables, if present, are removed.  Data is flagged at the beginning and end of each scan and anywhere described by the {\tt editList} input parameter.  Corrections are made to the signal quantization, parallactic angle, opacity and gain.  The best calibration source, time range, and reference antenna are found.  Manual phase calibration is performed.  The bandpass is calibrated.  The calibration sources found above, or specified by the user, are imaged.  Models are created using these images.  These models are used to calibrate delays and amplitudes for all sources (including calibrator sources).  All sources are imaged or re-imaged and  plots of the calibrated visibilities are generated.  Data is then output as FITS images, {\em uv} FITS, table-only FITS (with no data), and diagnostic plots.
+
+The pipeline parameters file allows the user to control what parts of the above data reduction process are performed during a given run. 
 
 \section{Files} \label{files}
 
-The files used and generated by the pipeline are described here.  All pipeline scripts and input files are read from the current directory.  Likewise, all pipeline outputs are written to the current directory.
+The files used and generated by the pipeline are described here.  All pipeline outputs are written to the current directory.
 
 \subsection{Python Scripts}
 
 The following files can be found within the Obit installation in directory {\tt ObitSystem/Obit/python}, unless otherwise noted.
 
 \begin{description}
-\item[\tt VLBAContPipe.py] \hfill \\ This is the top-level pipeline script and can be divided into three parts.  (i) The first part of the script imports required python modules.  (ii) The second part initializes the pipeline by defining variables used later in the script: the AIPS setup file (AIPSSetup.py) is executed, all input parameters are given default values, and the input parameters for the current data set are read from params.py.  (iii) Finally, the data is reduced by invoking functions defined in VLBACal.py.
+\item[\tt VLBAContPipe.py] \hfill \\ This is the top-level pipeline script. It can be divided into three parts.
+	\begin{enumerate}
+		\item Required python modules are imported.  
+		\item Obit and AIPS initialization variables are defined by calling {\tt AIPSSetup.py}.  Pipeline input parameters are defined using default values when possible.  The script {\tt params.py} is read to set or reset pipeline input parameters for the current data.  
+		\item The data reduction process is performed by invoking functions defined in {\tt VLBACal.py}.
+	\end{enumerate}
 
-\item[\tt AIPSSetup.py] \hfill \\ Located in ObitSystem/Obit/share/scripts, this file initializes python objects and environment variables used by Obit and AIPS.  For example, this file defines the AIPS user number, AIPS disk (data directory), and FITS disk (directory) used by the pipeline, and also sets the number of allowed threads used by the multi-threaded Obit objects.
+\item[\tt AIPSSetup.py] \hfill \\ Located in \verb|ObitSystem/Obit/share/scripts|, this file initializes python objects and environment variables used by Obit and AIPS.  For example, this file defines the AIPS user number, AIPS disk (data directory), and FITS disk (directory) used by the pipeline, and also sets the number of allowed threads used by the multi-threaded Obit objects.
 
 \item[\tt \emph{parms.py}] \hfill \\ \emph{Eventually, this file will be automatically generated by a script and will hold unique parameter values for each data set.}  For now, Python objects defined with default values in {\tt VLBAContPipe.py} can be copied into this file by hand.  These parameters will then be reassigned with the current data set in mind.  Some of the important information stored in this file includes: the project name, session, and receiver band letter that will be displayed in pipeline output; the input datafile(s); calibrator names; many variables that control which pipeline functions are run and how they run.
 
 \item[\tt VLBACal.py] \hfill \\ This file defines the VLBACal module, which contains functions for editing and calibrating VLBA data.  The module is documented in appendix \ref{VLBACal}.
 
-\item[\tt VLBALinePipe.py] \hfill \\  An early test script for processing spectral line data.  This script could be integrated into the pipeline system in the future.
+\item[\tt VLBALinePipe.py] \hfill \\  This is an early test script for processing spectral line data.  The script may be integrated into the pipeline system in the future.
 \end{description}
 
 \subsection{Primary Data Products}
@@ -242,8 +194,7 @@ The following data products are written to the current working directory.
 
 \item[Calibrated Visibility Data (single source)?] \hfill \\ 
 
-\item[Calibration Tables (w/o data)?] \hfill \\ 
-
+\item[Calibration Tables (w/o data)?] \hfill %\\
 \end{description}
 
 \subsection{Diagnostic Products}
