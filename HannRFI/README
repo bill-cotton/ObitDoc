@@ -1,0 +1,7 @@
+This directory contains the LaTeX inputs for a memo entitled
+"Suppression of Strong Quasi--stationary Narrow--band Signals in Radio
+Interferometry", Obit Development Memo 23, 2011 by W. D. Cotton on the
+use of Hanning smoothing and frequency domain RFI filtering with an
+example from the EVLA. Build PDF with
+
+latex HannRFI; dvipdf HannRFI
