@@ -2,247 +2,311 @@
 VLBA Pipeline User Manual
 =========================
 
-:Author: Jared Crossley <jcrossle@nrao.edu>
-:Date: January 2012
+:Author: Jared Crossley <jcrossle@nrao.edu>, Bill Cotton <bcotton@nrao.edu>, 
+         Gareth Hunt <ghunt@nrao.edu>
+:Organization: National Radio Astronomy Observatory
+:Date: 29 February 2012
 
-+
-| QUESTIONS:
-| Can the pipeline be run using the NRAO system install?
-| Can the pipeline be run using the binary installation?
-| Does the check parameter still work?
-+
+.. NOTES:
+   * Setting up AIPSSetup.py is involved.  Setting adirs and fdirs is not
+   completely obvious, though it should be easy for NM VLBA experts.
+   * AIPSSetup.py used by pipeline.  If this file is not present a helpful
+   error message should be written.
+
+.. contents::
+.. sectnum::
 
 ------------
 Introduction
 ------------
 
-The VLBA data reduction pipeline is a software pipeline developed as an
-extension of the Obit algorithmic development system.  The goal of the pipeline
-is to automate editing, calibration, and imaging of raw VLBA data products.  
-Currently, the pipeline works only on continuum data.
+The VLBA data reduction pipeline is a software pipeline that uses 
+the Obit algorithmic development system and AIPS.  The goal of the pipeline
+is to automate the
+
+* download of selected raw VLBA data, 
+* filling of the data into the Obit/AIPS catalog, 
+* editing, calibration, and imaging of the data, and 
+* (optionally) staging of the pipeline data products for validation and
+  subsequent ingestion into the NRAO archive.  
+
+Currently, the pipeline works only on continuum data.  This manual describes
+the installation and operation of the pipeline software.
 
 -------------------------
 Download and Installation
 -------------------------
 
-The VLBA pipeline runs within Obit.  See the Obit home page for Obit
-installation instructions, http://www.cv.nrao.edu/~bcotton/Obit.html. The
-pipeline works with Obit svn revision 400, and may work with earlier revisions.
-When the Obit installation is complete and you have sourced the Obit setup
-script (and AIPS setup script, if necessary) you will be able to start
-``ObitTalk`` from the command line.  Now you are ready install and run the VLBA
-pipeline.
+The VLBA pipeline runs within Obit, and has been tested using Obit subversion
+revision 400.  The pipeline may work with earlier or later revisions, but there
+are no guarantees.  *We therefore recommend that you install revision 400 of
+the Obit binary*, which can be found from the `Obit home page`_.  When the Obit
+installation is complete and you have sourced the Obit setup script (and AIPS
+setup script, if necessary) you will be able to start ``ObitTalk`` from the
+command line.  Now you are ready to install and run the VLBA pipeline.
 
-The pipeline is stored in a subversion repository.  To checkout a copy
-run the following subversion command::
+.. _Obit home page: http://www.cv.nrao.edu/~bcotton/Obit.html
+
+To checkout a copy of the pipeline run the following subversion command::
 
     $ svn co https://svn.cv.nrao.edu/svn/VLBApipeline
 
-Before running the pipeline:
+Before starting the pipeline, environment variables ``PYTHONPATH``,
+``VLBAPIPE``, and ``FITSDIR`` must be set properly.  Both bash and C-shell
+script templates have been provided for this purpose.  Open one of the setup
+script templates, setup.sh.default_ or setup.csh.default_, and follow the
+instructions in the file (The bash script is shown here, but the instructions
+are the same in either case.)::
 
-1. The directory containing the pipeline code must be added to the ObitTalk
-   Python path. 
-2. Environment variable FITSDIR must be defined as the directory where the
-   pipeline will acquire its input FITS data.
-
-Both of these can be accomplished using the template bash setup script,
-``setup.sh.default``.  Copy this file to ``setup.sh``, modify the paths as
-appropriate for your system and source the script::  
-
-    $ cp setup.sh.default setup.sh
-    $ # open setup.sh in editor and set appropriate paths...
-    $ source setup.sh 
-
-If you are running a shell other than bash, you will need to translate the bash
-script to the language of your shell.
+  #! /bin/env bash
+  #
+  # This script initializes the environment for the VLBA Pipeline.  The script is
+  # distributed as a template (setup.sh.default).
+  #
+  # 1) Copy the template into a new file:
+  #
+  #      $ cp setup.sh.default setup.sh
+  #
+  # 2) Edit the new file so the environment variables declared below are set to
+  #    appropriate paths for your system.
+  #
+  # 3) Source the new file before starting the pipeline:
+  #
+  #      $ source setup.sh
+  #
+  
+  # Set VLBAPIPE to the directory containing the pipeline code.
+  export VLBAPIPE="/export/home/cv-pipe-a/jcrossle/VLBApipeline"
+  # Set FITSDIR to a directory for storing archive downloads.
+  export FITSDIR="/lustre/aoc/users/jcrossle/fits"
+  
+  # Set DESTDIR to a directory where pipeline products will be moved. Leave
+  # commented if you do not want products moved.
+  # export DESTDIR="/lustre/aoc/users/jcrossle/VLBAPipeProducts/check"
+  
+  # Set umask to allow group write permissions. Leave commented if your pipeline
+  # products do not need to have group write permissions.
+  # umask u=rwx,g=rwx,o=rx # equivalent to 0002
+  
+  export PYTHONPATH="$VLBAPIPE:$PYTHONPATH"
+  export PATH={$PATH}:{$VLBAPIPE}
+ 
+.. _setup.sh.default: https://svn.cv.nrao.edu/view/VLBApipeline/setup.sh.default
+.. _setup.csh.default: https://svn.cv.nrao.edu/view/VLBApipeline/setup.csh.default
 
 -----------
 Quick Start
 -----------
 
-The quickest way to use the pipeline is through the continuum pipeline wrapper,
-``VLBAContPipeWrap.py``.  The wrapper queries the archive, downloads archive
-data, sets up the pipeline input files and starts the pipeline script.  
+Once the pipeline is installed, the quickest way to use the pipeline is through
+the continuum pipeline wrapper, ``VLBAContPipeWrap.py``.  The wrapper queries
+the archive, downloads archive data, sets up the pipeline input files and
+starts the pipeline script.  The current version of the pipeline wrapper has
+the following limitations:
+
+* The wrapper does not work on proprietary data. This requires security measures
+  not yet in place.
+* The wrapper must be run from a computer that has access to the NRAO AOC
+  Network File System so the archive can write files directly to the ``FITSDIR``
+  directory. [1]_
 
 By default, the wrapper requires an AIPS setup script be present in the local
-directory.  Copy the ``AIPSSetup.py`` script from the Obit ``scripts``
-directory [1] and change the content to conform to your system and directory
+directory.  Copy the AIPSSetup.py_ script from the Obit ``scripts``
+directory [2]_ and change the content to conform to your system and directory
 structure. Some of the things that you should pay attention to are:
 
-* Setting the AIPS data and FITS directories using variables ``adirs`` and
-  ``fdirs``.  Remove any directories you are not using.
-* Set the AIPS user number with variable ``user``.
+* Setting the AIPS-data and FITS directories using variables ``adirs`` and
+  ``fdirs``.  Several example initializations of ``adirs`` and ``fdirs`` are
+  provided; after setting the appropriate values for your system, remove or 
+  comment out all examples you are not using.
+* Set the AIPS user number with variable ``user``. [3]_
 * Set ``AIPS_ROOT``, ``AIPS_VERSION``, and ``DA00`` as appropriate for your
   AIPS installation.
 * Set ``nThreads`` to the number of threads Obit tasks are allowed to spawn.
+  This will improve performance on multi-core machines.  ``nThreads`` should 
+  not exceed the number of cores on your machine.
 * Specify the AIPS data directory that should be used by setting variable
-  ``disk`` to an index of ``adirs``.
+  ``disk`` to a 1-relative index of ``adirs``.  (Note that ``disk`` is actually
+  an index to an AIPS array created from ``adirs``; AIPS arrays are 1-based.)
+
+.. _AIPSSetup.py: https://svn.cv.nrao.edu/view/ObitInstall/ObitSystem/Obit/share/scripts/AIPSSetup.py?content-type=text%2Fplain
  
-An explanation of the wrapper command line arguments and options can be found
-using the ``-h`` option::
+A brief explanation of the wrapper command line arguments and options can be
+found using the ``-h`` option::
 
-    $ ObitTalk VLBAContPipeWrap.py -h
-    Using DADEVS.SH
-    Obit: info    20120125T094943 ObitPython Begins, svn ver. 400
-    Obit: info    20120125T094943 Date/Time: 2012-01-25  09:49:43
-    Usage: VLBAContPipeWrap.py [options] StartDate [StopDate]
-           dates as yyyy-mmm-dd, eg. 2005-jan-01
-    
-    Options:
-      -h, --help            show this help message and exit
-      -P PROJECT, --project=PROJECT
-                            project code
-      -q, --query           query and summary only
-      -a, --all             Automatically process all files in archive response
-      -m, --metadata        Display all metadata in archive response
-      -i, --ignoreidi       Ignore all FITS IDI files in archive response
-      --multiidi            Download and fill multiple old-correlator FITS IDI
-                            files
-      -F, --finish          Finish only, skip download and process
+    $ VLBAContPipeWrap.py -h
 
-The required command line arguments are the archive query start and stop
-dates::
+A complete description of each option is given in `Command Line Options`_, 
+below.
 
-    $ ObitTalk VLBAContPipeWrap.py 2010-jan-01 2010-jan-31
+The two required command line arguments are the archive query start and stop
+dates.  As an example, this command will cause the wrapper to query the NRAO
+archive for VLBA observations from January of 2010:: 
 
-This will cause the wrapper to query the NRAO archive for VLBA observations from
-January of 2010.  The wrapper will write a table of the archive response and
-ask the user to select rows from the table for sequential pipeline processing.
+    $ VLBAContPipeWrap.py 2010-jan-01 2010-jan-31
 
-NOTE: The wrapper currently does not work when old-correlator FITS-IDI files
-are selected directly.  To load data from old-correlator FITS-IDI files, use
-the ``--multiidi`` option and *select the corresponding FITS-AIPS files*.  Use
-``-i`` to ignore all FITS-IDI files when printing the archive query response.
+The wrapper will print a table of the archive response and ask the user to
+select rows from the table for sequential pipeline processing.  Use the ``-P``
+option to limit your search to a specific project code.  Use the ``-q`` option
+to stop the wrapper after printing the archive response.
 
-[#] The location of the ``scripts`` directory depends on which Obit
-    installation you are using:
-    * If you installed Obit from source, the path from the ``ObitInstall``
-      directory is::
-          ./ObitSystem/Obit/share/scripts
-    * If you installed Obit as a binary package, the path from the top-level 
-      Obit installation directory is::
-          ./share/obit/scripts
-    * If you are using the NRAO system installation of Obit, ``scripts`` can
-      be found here::
-          /usr/share/obit/scripts
+After the wrapper downloads a file from the archive it will generate a
+directory within the current working directory with a name composed of the
+project code, the 6-digit observation date (YYMMDD), and the archive file ID
+each separated by underscores.  (For example, project BL0149, session AA was
+observed on 2007-Jun-03 and has archive file ID 235173746; the pipeline
+directory generated for this file will be ``BL0149_070603_235173746``.)  Many
+files will be generated and stored in this directory.  These files and their
+associated metadata are described below in `Data Products`_.
 
----------------------------------------------
-The Pipeline Wrapper: ``VLBAContPipeWrap.py``
----------------------------------------------
+If a destination directory has been specified using environment variable
+``DESTDIR`` or command line option ``--destdir`` (see `Command Line Options`_)
+the new data directory will be moved to the destination directory when
+processing is complete.    
 
-The continuum pipeline wrapper simplifies the job of starting the pipeline by
-providing a simple interface to the NRAO VLBA Archive, automatically
-downloading data to a directory on the NRAO AOC network, setting up the input
-parameters for the pipeline script, executing the pipeline script, and copying
-the data to a storage directory when finished.
+.. [1] When the archive mirror in Charlottesville is complete, users on the 
+   NRAO CV Network File System will also be able to use the pipeline. However,
+   some changes to the pipeline's archive interface may be required.
 
-The VLBA Archive currently contains data from two correlators.  The old
+.. [2] For an Obit binary installation, the path to the scripts directory from
+   the top-level Obit installation directory is ``./share/obit/scripts``.  
+
+.. [3] If you intend to run multiple pipeline processes in parallel, it's a
+   good idea to use different AIPS user numbers for each process to ensure
+   there are no conflicts in reading from or writing to the AIPS catalog.
+   Presently, this means setting up a directory with an AIPS setup script for
+   each pipeline process.
+
+--------------------
+The Pipeline Wrapper
+--------------------
+
+The continuum pipeline wrapper, ``VLBAContPipeWrap.py``, simplifies the job of
+starting the pipeline by
+
+* providing a simple interface to the NRAO VLBA Archive, 
+* automatically downloading data to a directory on the NRAO AOC network, 
+* setting up the input parameters for the pipeline script, 
+* executing the pipeline script, and 
+* copying the data to a storage directory when finished.
+
+~~~~~~~~~~~~~~~~~~~~
+Command Line Options
+~~~~~~~~~~~~~~~~~~~~
+
+The command line options for the pipeline wrapper are described here.
+
+=============================  ================================================
+Option                         Description
+=============================  ================================================
+-h, --help                     Displays a brief help message that describes
+                               command-line arguments and options.
+-P PROJECT, --project=PROJECT  Queries the archive for a specific project code.
+-q, --query                    Performs a query and prints the archive response
+                               summary only.  Does not setup directories for
+                               processing or start pipeline processes.
+-a, --all                      Automatically processes all files in archive 
+                               response.  Requires no human interaction.
+-m, --metadata                 Prints the usual summary of the archive response
+                               and then prints all metadata as a list of Python
+                               dictionaries.  (The summary contains only a
+                               subset of the response metadata.)
+-i, --ignoreidi                Ignores all FITS IDI files in archive response.
+                               By default, FITS-IDI files are listed only for
+                               new-correlator observations, taken on or after 
+                               2009 December 10.
+--showallidi                   Shows all FITS IDI files in archive response.
+                               By default, FITS-IDI files are printed only for
+                               new-correlator observations, taken on or after
+                               2009 December 10.
+--multiidi                     Downloads and fills multiple old-correlator 
+                               FITS-IDI files. This option allows for
+                               processing old-correlator FITS-IDI files rather
+                               than the pipeline-processed FITS-AIPS files.
+                               The user should select one or more FITS-AIPS
+                               files; the wrapper will then download and fill
+                               the corresponding FITS-IDI files automatically.
+                               The correspondence is determined by the start
+                               and end time of the FITS-AIPS file.
+-F, --finish                   Assumes data have already been pipeline
+                               processed.  Skips data download and processing;
+                               verifies the pipeline data-file manifest and
+                               moves data to the destination directory, if it
+                               has been specified.
+--destdir=DESTDIR              Moves pipeline data products to DESTDIR when
+                               processing has finished and manifest has been
+                               verified.
+=============================  ================================================
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Loading multiple FITS-IDI files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The VLBA Archive currently contains data from two correlators.  The new DiFX
+correlator outputs single FITS-IDI files for each observing session.  The old-
 correlator output one or more FITS-IDI files for each observing session.  These
 files require special handling for reduction in Obit (or AIPS).  For this
 reason, the raw IDI files were processed (by a different pipeline) to produce a
-single FITS-AIPS file for each observing session.  The new DiFX correlator
-outputs single FITS-IDI files for each observing session.
+single FITS-AIPS file for each observing session.  
 
-The pipeline is designed to process one data file at a time.  For
+The VLBA pipeline is designed to process one data file at a time.  For
 old-correlator data, this means processing FITS-AIPS files; for new-correlator
-data, this means processing FITS-IDI files.  However, experience has shown that
-some of the old-correlator FITS-AIPS files contain errors that can be avoided
-by using the FITS-IDI files directly.  The wrapper has therefore been enhanced
-with a ``--multiidi`` option to allow for automated retrieval, concatenation,
-and processing of multiple IDI files.  
+data, this means processing FITS-IDI files.  However, some of the
+old-correlator FITS-AIPS files contain errors that can be avoided by using the
+original FITS-IDI files directly.  The wrapper has therefore been enhanced with
+a ``--multiidi`` option to allow for automated retrieval, concatenation, and
+processing of multiple IDI files.  
 
-----------------------------------------
-The Pipeline Script: ``VLBAContPipe.py``
-----------------------------------------
+NOTE: The wrapper currently does not work when old-correlator FITS-IDI files
+are selected directly.  To load data from old-correlator FITS-IDI files, use
+the ``--multiidi`` option and *select the corresponding FITS-AIPS files*.  
+
+-------------------
+The Pipeline Script
+-------------------
 
 The continuum pipeline can be run manually by invoking ``VLBAContPipe.py`` as
-an ObitTalk script.  This method requires specifying two input parameter files
-on the command line::
+an ObitTalk script.  This allows you to restart the pipeline at any point,
+should it crash.  It also allows you to rerun a subset of the pipeline by
+turning on or off various steps in the pipeline process.  
+
+To run the pipeline manually, two input parameter files must be provided as
+arguments on the command line::
 
     $ ObitTalk VLBAContPipe.py AIPSSetup.py PipelineParms.py
 
-The first argument is the AIPS setup Python script.  This file
-defines the AIPS data and FITS directories and initializes important Obit
-variables.  An example setup file is included in the Obit installation in file
-``AIPSSetup.py`` in the Obit ``scripts`` directory [1].  Make a local copy of
-``AIPSSetup.py`` and modify it to suit your system.  Some of the things that
-you should pay attention to are:
-
-* Setting the AIPS data and FITS directories using variables ``adirs`` and
-  ``fdirs``.  Remove any directories you are not using.
-* Set the AIPS user number with variable ``user``.
-* Set ``AIPS_ROOT``, ``AIPS_VERSION``, and ``DA00`` as appropriate for your
-  AIPS installation.
-* Set ``nThreads`` to the number of threads Obit tasks are allowed to spawn.
-* Specify the AIPS data directory that should be used by setting variable
-  ``disk`` to an index of ``adirs``.
+The first argument to ``VLBAContPipe.py`` is the AIPS setup Python script.  
+This is the same AIPSSetup.py_ script described above in `Quick Start`_.
 
 The second command line argument to ``VLBAContPipe.py`` is the pipeline
 parameters file.  A template of the parameters file is distributed with the
-pipeline source code in ``VLBAContTemplateParm.py``.  Make a local copy of the
-parameters template and replace all the substitution keys with values
-appropriate for your data set.  Each substitution key is explained at the top
-of the template file along with a data type where it is not obvious from the
-context. At the bottom of the parameters file are the pipeline control
-parameters.  These parameters allow the user to:
+pipeline source code in VLBAContTemplateParm.py_.  To run the pipeline script
+you should make a local copy of the parameters template and replace all the
+substitution keys with values appropriate for your data set.  Each substitution
+key is explained at the top of the template file along with a data type where
+it is not obvious from the context. At the bottom of the parameters file are
+the pipeline control parameters.  These parameters allow the user to:
 
-* turn on script checking [does this work?] which executes much of the pipeline
-  code without calling the routines that actually process the data.
 * turn on debug mode which prints the Obit and AIPS task input parameters 
-  prior to task execution and leaves Obit task input files in the /tmp
-  directory for debugging.
-* Specify the type of data file to load: UVFITS (also known as FITS-AIPS) or
-  FITS-IDI.
-* Turn on or off various steps in the pipeline process.
+  prior to task execution and leaves Obit task input files in the ``/tmp``
+  directory for debugging,
+* specify the type of data file to load: UVFITS (also known as FITS-AIPS) or
+  FITS-IDI, 
+* adjust pipeline input parameters, and
+* turn on or off various steps in the pipeline process.
 
-The ability to turn pipeline steps off allows you to restart the pipeline at
-any point if there is an error or if you want to rerun a subset of the
-pipeline.
-
---------------
-Python Modules
---------------
-
-The pipeline currently consists of several Python modules, described below.  
-``VLBACal.py`` and ``PipeUtil.py`` serve as a pipeline API.
-
-VLBACal.py
-    A collection of functions that perform various steps in the reduction 
-    process.  Typical functions setup and invoke Obit or AIPS tasks to
-    accomplish the data reduction. 
-
-VLBAContPipe.py
-    The VLBA continuum pipeline.  A function that calls the appropriate
-    functions in VLBACal, in the appropriate order, to reduce VLBA continuum
-    data.  This file can be invoked as an ObitTalk script.
-
-VLBAContPipeWrap.py
-    A wrapper that automates archive access and writes setup files for the 
-    continuum pipeline.  This file can be invoked as an ObitTalk script.
-
-VLBAContTemplateParm.py
-    A template Python file used as input to VLBAContPipe.py.  The wrapper
-    inserts appropriate values in this template for each execution of the 
-    continuum pipeline.
-
-VLBALinePipe.py
-    The VLBA spectral line pipeline.  Not yet functional.
-
-PipeUtil.py
-    A collection of functions that perform various pipeline-related tasks.
-
-IDIFix.py
-    A function that fixes old-correlator (pre-2010) FITS-IDI files.
+.. _VLBAContTemplateParm.py: https://svn.cv.nrao.edu/view/VLBApipeline/VLBAContTemplateParm.py?content-type=text%2Fplain
 
 -------------
 Data Products
 -------------
 
-The pipeline generates metadata and data files that fall into one of two 
-catagories: multi-source data and single-source data.  A complete table of 
-file data and metadata products can be found here: 
-https://archive.nrao.edu/VLBAPipeProducts/metadata.html.  Some of the most
-useful data products are listed below.
+The pipeline generates metadata and data files that fall into one of two
+categories: multi-source data and single-source data.  A `complete table`_ of
+file data and metadata products is available online.  Some of the most useful
+data products are described below.
+
+.. _complete table: https://safe.nrao.edu/wiki/bin/view/VLBA/PipelineMetadata
 
 HTML Report (ex: ``BL0149_BN_2cm.report.html``)
     A human-readable report on all metadata and file data products generated in 
@@ -262,9 +326,11 @@ Contour plot (ex: ``BL0149_BN_2cm_0010+405.cntr.ps``)
 
 Diagnostic visibility plots (ex: ``BL0149_BN_2cm_0010+405.amp.jpg``)
     Diagnostic plots are generated to show:
-    * Amplitude versus uv-distance
-    * uv-coverage (u versus v)
-    * Visibilities in the complex plane (real versus imaginary)
+
+    * amplitude versus uv-distance,
+    * uv-coverage (u versus v), and
+    * visibilities in the complex plane (real versus imaginary).
+
     The diagnostic plots are generated in JPEG format.
 
 Calibrated and averaged uv data (ex: ``BL0149_BN_2cm.CalAvg.uvtab``)
@@ -277,43 +343,104 @@ Calibrated AIPS tables (ex: ``BL0149_BN_2cm.CalTab.uvtab``)
 Troubleshooting
 ---------------
 
-* PROBLEM: One of the AIPS tables contains an error that crashes the pipeline
-  or produces erroneous results.
+.. :Problem: The pipeline is crashing or producing bogus results?  What should I 
+    do?
+   :Solution: First, remember that the pipeline currently processes only continuum
+       data, and does not calibrate polarization.  As of this writing, the
+       pipeline has been tested on the data recorded by the MOJAVE project.  We
+       offer one such file from this data set as a pipeline test data set: BL0149,
+       session AA, archive file id 235173746.  The pipeline output for this data
+       set is available through the NRAO New Mexico NFS at::
+   
+           /lustre/aoc/users/ghunt/VLBAPipeProducts/archive/BL0149_070603_235173746.cata
+   
+       Or, through restricted Web access at 
+       https://archive.nrao.edu/mojave/archive/BL0149_070603_235173746.cata.
+   
+       For comparison, you can process this same data set using the pipeline 
+       wrapper with this command::
+       
+           $ VLBAContPipeWrap.py 2007-jun-03 2007-jun-04 -P BL0149 -a
 
-  SOLUTION: If you loaded data from an old-correlator (observed before ??)
-  pipeline generated FITS-AIPS file, first try downloading the original
-  FITS-IDI files, and running the pipeline on those files directly.  In some
-  cases errors that appear in the FITS-AIPS files are not present in the
-  original FITS-IDI files.
+:Problem: One of the AIPS tables contains an error that crashes the pipeline or
+    produces erroneous results.
 
-  If this does not resolve the problem, or if the error is present in FITS-IDI
-  data produced by the DiFX correlator (?? or later) there is no easy fix. Your
-  best bet in this case is to correct the error manually and run the pipeline
-  on the corrected data or give up. Remember that you can turn various parts of
-  the pipeline on or off by editing the ``AIPSSetup.py`` script.
- 
-  A list of archived VLBA data files that cannot be processed using the VLBA
-  pipeline or require special handling is maintained here:
-  BadData.txt.  
-  If you find a file that you belive should be added to this 
-  list please email the authors.
+:Solution: If you loaded data from an old-correlator (observed before
+    2009-Dec-11) pipeline-generated FITS-AIPS file, first try downloading the
+    original FITS-IDI files, and running the pipeline on those files directly.
+    This can be done by using the ``--multiidi`` option for the pipeline
+    wrapper.  In some cases errors that appear in the FITS-AIPS files are not
+    present in the original FITS-IDI files.
 
-* PROBLEM: The flag (FG) table is missing.
+    If this does not resolve the problem, or if the error is present in
+    FITS-IDI data produced by the DiFX correlator (2009-Dec-11 or later) there
+    is no easy fix. Your best bet in this case is to correct the error manually
+    and run the pipeline on the corrected data.  Refer to the appropriate Obit
+    and AIPS documentation for instructions on how to do this. Remember that you
+    can turn various parts of the pipeline on or off by editing the
+    pipeline parameters file described in `The Pipeline Script`_.
 
-  SOLUTION: Generate an FG table using...
+    A `list of VLBA data files`_ that cannot be processed using the VLBA
+    pipeline or that require special handling is available online.  If
+    you find a file that you believe should be added to this list please email
+    the authors.
 
----------
-Wish List
----------
+.. _list of VLBA data files: https://science.nrao.edu/facilities/vlba/pipeline-1/raw-data-known-problems/view
 
-Here I record feature enhancements I'd like to see.
+----------
+Appendices
+----------
 
-* Load old-correlator IDI files automatically. (No need to use FITS-AIPS files.)
-* Spawn multiple processes automatically.
-* Load data and prep pipeline only.  Do not actually start the pipeline.  This
-  will allow the user to tweak the pipeline input parameters before the pipeline
-  is started.
-* Produce warning if pipeline starts with AIPS catalog not empty.
-* Add no-clean-up and no-copy-over option to wrapper.
+~~~~~~~~~~~~~~
+Python Modules
+~~~~~~~~~~~~~~
 
+The pipeline consists of several Python modules, described here.  
 
+VLBACal.py
+    A collection of functions that perform various steps in the reduction 
+    process.  Typical functions setup and invoke Obit or AIPS tasks to
+    accomplish the data reduction.
+
+VLBAContPipe.py
+    The VLBA continuum pipeline.  See section `The Pipeline Script`_ for
+    details.
+
+VLBAContPipeWrap.py
+    A wrapper for the continuum pipeline.  See section `The Pipeline Wrapper`_
+    for details.
+
+VLBAContTemplateParm.py
+    A template Python file used as input to VLBAContPipe.py.  The wrapper
+    inserts appropriate values in this template for each execution of the 
+    continuum pipeline.
+
+VLBALinePipe.py
+    A development version of the VLBA spectral line pipeline.  This module is
+    not yet functional.
+
+PipeUtil.py
+    A collection of functions that perform various pipeline-related tasks.
+
+IDIFix.py
+    A function that fixes old-correlator (pre-2010) FITS-IDI files.
+
+mjd.py
+    A class that converts dates between Gregorian and Modified Julian formats.
+
+~~~~~~~~~~~~~~~~~~~~~~~
+Archiving Data Products
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Authorized NRAO staff may wish to commit data products to the NRAO archive.
+The pipeline output files have been designed in coordination with the archive
+operator, John Benson <jbenson@nrao.edu>, to make this easy.  Contact John
+Benson to discuss the creation of a staging directory for automated archive
+ingestion.  Once a staging directory is agreed upon, simply copy your pipeline
+data directories into the staging directory to have them ingested into the
+archive.
+
+Pipeline data products should be validated manually before they are put into
+the archive.  For this reason we recommend you not use the ``DESTDIR`` or
+``--destdir`` functionality to automatically copy data directly to the staging
+area.  Doing so may result in bad data being ingested into the archive.
