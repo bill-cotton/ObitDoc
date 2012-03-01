@@ -1,0 +1,4026 @@
+<?xml version="1.0" ?>
+<votable>
+  <resource name="Project Data">
+    <param arraysize="9x22" datatype="char" name="contCals" ucd="meta.id;src.calib" value="0215+015 0238-084 0316+413 0415+379 0748+126 0829+046 0851+202 0917+624 1101+384 0716+714 1226+023 1418+546 1642+690 1331+170 1637+574 1334-127 1633+382 1638+398 1823+568 1514-241 2200+420 1908-201 2223-052 2351+456 0003-066 ">
+      <description>
+        List of continuum calibrators
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="session" ucd="meta.code" value="AG">
+      <description>
+        Project session identifier
+      </description>
+    </param>
+    <param datatype="double" name="goodCalSNR" ucd="stat.snr;src.calib" value="148.917700103">
+      <description>
+        Signal-to-noise ratio for best calibration source
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="goodCalSrc" ucd="meta.id;src" value="2223-052        ">
+      <description>
+        Best calibration source
+      </description>
+    </param>
+    <param arraysize="2x4" datatype="double" name="freqCov" ucd="em.freq" unit="Hz" value="15353458750.000000 15361458750.000000 15361458750.000000 15369458750.000000 15369458750.000000 15377458750.000000 15377458750.000000 15385458750.000000 ">
+      <description>
+        Observational frequency coverage: list of lower- and upper-side band pairs
+      </description>
+    </param>
+    <param arraysize="2" datatype="double" name="goodCalTime" ucd="time.interval" unit="8.64x10+4s" value="1.30062821205 1.30062821205">
+      <description>
+        Observing time range for best calibration source (fraction of a day)
+      </description>
+    </param>
+    <param datatype="double" name="minFringeMas" ucd="phys.angSize" unit="mas" value="0.467688314725">
+      <description>
+        Minimum fringe spacing (milliarcseconds)
+      </description>
+    </param>
+    <param datatype="float" name="obsStop" ucd="time.end" unit="MJD" value="54350.5328612">
+      <description>
+        Observation stop time (MJD)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="procDate" ucd="time.processing" value="2011-10-25">
+      <description>
+        Pipeline processing date
+      </description>
+    </param>
+    <param datatype="float" name="obsStart" ucd="time.start" unit="MJD" value="54349.5480903">
+      <description>
+        Observation start time (MJD)
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="aipsVer" ucd="meta.version;meta.software" value="31DEC11/(2011-10-25)">
+      <description>
+        Version string
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="obitVer" ucd="meta.version;meta.software" value="387M">
+      <description>
+        Version string
+      </description>
+    </param>
+    <param datatype="int" name="archFileID" ucd="meta.record;meta.dataset" value="243381635">
+      <description>
+        Archive file ID (integer unique to each archive file)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="obsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param arraysize="3x9" datatype="char" name="anNames" ucd="meta.code" value="BR FD KP LA MK NL OV PT SC ">
+      <description>
+        List of antennas used in observation (antenna code)
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="pyVer" ucd="meta.version;meta.software" value="2.7.1 (r271:86832, May 31 2011, 13:26:40) 
+[GCC 4.1.2 20080704 (Red Hat 4.1.2-48)]">
+      <description>
+        Version string
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="band" ucd="meta.code;instr.bandpass" value="Ku">
+      <description>
+        Receiver band designation
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="fileSetID" ucd="meta.record;meta.dataset" value="BL0149_070906_243381635">
+      <description>
+        Pipeline data product set identification string (project code + observing date + archive file ID)
+      </description>
+    </param>
+    <param datatype="int" name="goodCalBestRef" ucd="inst.calib" value="2">
+      <description>
+        Reference antenna for best calibration source
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="dataSet" ucd="meta.dataset;meta.file" value="VLBA_BL149AG_FPOL4IF8MHZ16CH_15.3495GHZ00.uvfits">
+      <description>
+        Name of archived raw-data file
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="project" ucd="meta.code" value="BL0149">
+      <description>
+        Project code
+      </description>
+    </param>
+    <param arraysize="*" datatype="char" name="sysInfo" ucd="meta.version;meta.software" value="Linux cv-pipe-a 2.6.18-194.32.1.el5 #1 SMP Mon Dec 20 10:52:42 EST 2010 x86_64 x86_64 x86_64 GNU/Linux
+">
+      <description>
+        Version string
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              PipeAIPSSetup.py
+            </td>
+            <td>
+              Obit's AIPS setup file
+            </td>
+          </tr>
+          <tr>
+            <td>
+              VLBAContParm_BL0149.py
+            </td>
+            <td>
+              Pipeline input parameters
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku_GoodCal.pickle
+            </td>
+            <td>
+              Best calibrator information
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku_OKCal.pickle
+            </td>
+            <td>
+              List of calibrators
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku_targets.pickle
+            </td>
+            <td>
+              List of targets
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku.log
+            </td>
+            <td>
+              Pipeline log file
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku.Quant.ps
+            </td>
+            <td>
+              Quantization corrections
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku.Opacity.ps
+            </td>
+            <td>
+              Gain/Opacity corrections
+            </td>
+          </tr>
+          <tr>
+            <td>
+              outfiles.pickle
+            </td>
+            <td>
+              Python object pickle file
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku.PC.ps
+            </td>
+            <td>
+              Phase Cal corrections
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu.ManPCal.ps
+            </td>
+            <td>
+              Corrections tp Phase Cal
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku.DelayCal.ps
+            </td>
+            <td>
+              Delay corrections
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku.spec.ps
+            </td>
+            <td>
+              Calibrated calibrator spectrum
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku.PhaseCal0.ps
+            </td>
+            <td>
+              Phase corrections
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku.AmpCal.ps
+            </td>
+            <td>
+              Amplitude corrections
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Ku.PhaseCal.ps
+            </td>
+            <td>
+              Phase corrections
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKuCalAvg.uvtab
+            </td>
+            <td>
+              Calibrated Averaged UV data
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKuCalTab.uvtab
+            </td>
+            <td>
+              Calibrated AIPS tables
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_KuSrcReport.pickle
+            </td>
+            <td>
+              All source metadata
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_KuProjReport.pickle
+            </td>
+            <td>
+              Project metadata
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149_AG_Kureport.html
+            </td>
+            <td>
+              HTML Report generated by pipeline
+            </td>
+          </tr>
+          <tr>
+            <td>
+              VOTable.xml
+            </td>
+            <td>
+              VOTable report
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0215+015">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="1.74713863611">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="34.4539781292">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="5788">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="3.40457006587e-07 1.50166727053e-07 21.1179141998 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24244773253e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.03118162447">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10891712453e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="34.4539781292">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00183003593702">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="0.978613197803">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="1.74713863611">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0311179161072">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0215+015.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0215+015.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0215+015.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0215+015.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0215+015.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0215+015.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0215+015.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0215+015.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0238-084">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="-8.25576438333">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="40.2699937708">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6211">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="3.61990544206e-07 2.13037111507e-07 19.0432128906 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24874243063e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="0.838221060374">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.11106991127e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="40.2699937708">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00161846668925">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="0.349987268448">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="-8.25576438333">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0307037830353">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0238-084.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0238-084.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0238-084.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0238-084.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0238-084.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0238-084.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0238-084.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0238-084.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0316+413">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="41.511695525">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="49.9506671625">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6629">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.61192269591e-07 1.51451502006e-07 29.2230949402 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.2475739431e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="12.2330098415">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.11067028854e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="49.9506671625">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.0265172924846">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="3.86405277252">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="41.511695525">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0299606919289">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0316+413.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0316+413.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0316+413.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0316+413.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0316+413.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0316+413.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0316+413.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0316+413.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0415+379">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="38.0266111417">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="64.5886550625">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6973">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.39290926629e-07 1.3961505374e-07 12.741358757 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.26245839233e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="5.71103402495">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10923585339e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="64.5886550625">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.0100463442504">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="3.19111466408">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="38.0266111417">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0296615958214">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0415+379.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0415+379.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0415+379.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0415+379.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0415+379.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0415+379.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0415+379.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0415+379.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0748+126">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="12.5180078167">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="117.716857229">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6288">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.81944124936e-07 1.42627399669e-07 9.5269317627 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.26491047531e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="3.85785709391">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.11006956161e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="117.716857229">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00680670235306">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="3.36036801338">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="12.5180078167">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0290021300316">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0748+126.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0748+126.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0748+126.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0748+126.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0748+126.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0748+126.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0748+126.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0748+126.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0829+046">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="4.49419049722">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="127.953653988">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6013">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="3.16160480907e-07 1.74811077613e-07 17.8584403992 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24465005974e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="0.645292186076">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10967032043e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="127.953653988">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00122385786381">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="0.429314136505">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="4.49419049722">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0307313203812">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0829+046.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0829+046.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0829+046.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0829+046.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0829+046.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0829+046.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0829+046.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0829+046.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0851+202">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="20.10851135">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="133.703645542">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6839">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.64878025291e-07 1.42496162425e-07 11.4820537567 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24255786666e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="2.17768975103">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.1089547904e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="133.703645542">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.0042271586135">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="1.54853987694">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="20.10851135">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0316300988197">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0851+202.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0851+202.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0851+202.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0851+202.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0851+202.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0851+202.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0851+202.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0851+202.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0917+624">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="62.2644945417">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="140.400962788">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7173">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="1.80848601872e-07 1.68928067978e-07 -42.1673583984 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24390327933e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.0609104844">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10941492153e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="140.400962788">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00225324672647">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="0.729931354523">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="62.2644945417">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0310841202736">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0917+624.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0917+624.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0917+624.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0917+624.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0917+624.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0917+624.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0917+624.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0917+624.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1101+384">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="38.2088330694">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="166.113808087">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7049">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.27352856541e-07 1.54554001597e-07 16.7749481201 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.25256408473e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="0.399363976176">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10912435289e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="166.113808087">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.000564704067074">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="0.336895138025">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="38.2088330694">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.029940366745">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1101+384.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1101+384.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1101+384.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1101+384.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1101+384.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1101+384.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1101+384.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1101+384.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0716+714">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="71.3434342694">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="110.47270195">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6413">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="1.97493790211e-07 1.67868037693e-07 -67.9969024658 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.25206386265e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.36950911846">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10895377716e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="110.47270195">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00211631460115">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="1.23897445202">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="71.3434342694">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0302533507347">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0716+714.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0716+714.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0716+714.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0716+714.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0716+714.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0716+714.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0716+714.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0716+714.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1418+546">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="54.3874408778">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="214.944155842">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7368">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="1.90409906509e-07 1.64306840134e-07 -1.13095378876 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24335687196e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.17330324558">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10922805021e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="214.944155842">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00181084568612">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="0.789065539837">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="54.3874408778">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0303558111191">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1418+546.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1418+546.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1418+546.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1418+546.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1418+546.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1418+546.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1418+546.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1418+546.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1642+690">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="68.9443768028">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="250.532702113">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7069">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="1.92501090623e-07 1.81755950734e-07 -44.3404960632 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24244204819e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="2.03785221433">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10891518048e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="250.532702113">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.0036434631329">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="1.8811737299">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="68.9443768028">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0317897200584">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1642+690.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1642+690.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1642+690.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1642+690.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1642+690.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1642+690.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1642+690.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1642+690.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1226+023">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="2.052388375">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="187.27791555">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="5799">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="3.3581545722e-07 1.53875930664e-07 23.4168128967 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24244204819e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="23.7058840124">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10891518048e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="187.27791555">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.0518825761974">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="11.371301651">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="2.052388375">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.029348731041">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1226+023.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1226+023.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1226+023.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1226+023.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1226+023.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1226+023.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1226+023.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1226+023.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1331+170">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="16.8177819056">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="203.399094333">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7146">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.81209111108e-07 1.44970030647e-07 7.98131275177 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.25513269672e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="0.390767477656">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.11000024958e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="203.399094333">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.000658701406792">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="0.32668915391">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="16.8177819056">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0310042500496">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1331+170.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1331+170.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1331+170.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1331+170.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1331+170.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1331+170.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1331+170.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1331+170.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1637+574">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="57.3399941722">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="249.5560679">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7476">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.03063166282e-07 1.54954292952e-07 -12.00847435 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24400808438e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="2.27530122511">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10945076486e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="249.5560679">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00356392585672">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="1.86595869064">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="57.3399941722">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0309016704559">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1637+574.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1637+574.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1637+574.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1637+574.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1637+574.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1637+574.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1637+574.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1637+574.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1334-127">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="-12.9568592444">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="204.415761567">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6208">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="3.91074109984e-07 1.51443884988e-07 16.0799312592 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.25633138232e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="6.9064496925">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.11040900137e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="204.415761567">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00541558302939">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="5.52351665497">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="-12.9568592444">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0293846130371">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1334-127.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1334-127.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1334-127.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1334-127.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1334-127.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1334-127.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1334-127.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1334-127.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1633+382">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="38.1345834917">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="248.814554046">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7042">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.3955414008e-07 1.50739197124e-07 0.282018214464 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.25019833269e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="2.74731743202">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10831763145e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="248.814554046">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00350122153759">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="2.13469409943">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="38.1345834917">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.029388487339">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1633+382.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1633+382.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1633+382.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1633+382.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1633+382.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1633+382.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1633+382.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1633+382.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1638+398">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="39.7794523556">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="250.123469875">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7423">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.33867297084e-07 1.50288855139e-07 3.24852204323 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24605942126e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.48369400602">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.11015232207e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="250.123469875">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00288741290569">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="1.22027099133">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="39.7794523556">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0315163731575">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1638+398.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1638+398.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1638+398.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1638+398.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1638+398.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1638+398.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1638+398.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1638+398.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1823+568">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="56.8504141222">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="276.029451567">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7489">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.09773332926e-07 1.50691988665e-07 -4.18364906311 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24868985047e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.09694137788">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.11105192886e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="276.029451567">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00162165926304">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="0.89524692297">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="56.8504141222">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0308563113213">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1823+568.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1823+568.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1823+568.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1823+568.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1823+568.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1823+568.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1823+568.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1823+568.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1514-241">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="-24.3720766806">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="229.424221379">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="5775">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="4.43997549837e-07 1.65494995485e-07 10.283741951 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.26186402333e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.67575556244">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10903376793e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="229.424221379">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00638962956145">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="1.12726604939">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="-24.3720766806">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0309131145477">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1514-241.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1514-241.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1514-241.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1514-241.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1514-241.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1514-241.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1514-241.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1514-241.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="2200+420">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="42.2777722083">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="330.680380725">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7288">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.32747424889e-07 1.46566961234e-07 7.04873418808 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24279092467e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="3.89696426451">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10903449624e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="330.680380725">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00588111532852">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="2.83785271645">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="42.2777722083">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0294570326805">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu2200+420.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2200+420.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2200+420.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2200+420.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2200+420.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2200+420.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2200+420.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2200+420.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="1908-201">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="-20.1153080472">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="287.790220392">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6093">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="3.88380669847e-07 1.67420694197e-07 12.1476707458 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24264277651e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.80909152253">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10898382957e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="287.790220392">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00471919728443">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="1.56652188301">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="-20.1153080472">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0292023420334">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu1908-201.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1908-201.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1908-201.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1908-201.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1908-201.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1908-201.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1908-201.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu1908-201.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="2351+456">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="45.8845101556">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="358.590334246">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="7516">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="2.36176333601e-07 1.49271301098e-07 14.5219783783 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24617488445e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.02226419948">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.11019181048e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="358.590334246">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00185907399282">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="0.500019729137">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="45.8845101556">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.0303671360016">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu2351+456.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2351+456.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2351+456.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2351+456.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2351+456.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2351+456.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2351+456.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2351+456.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="2223-052">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="-4.95038633889">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="336.446913729">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6422">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="3.41084358979e-07 1.88217953223e-07 11.2344942093 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.24768372195e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="5.52881262754">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.11070783291e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="336.446913729">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.00612124567851">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="4.65494823456">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="-4.95038633889">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.030526638031">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu2223-052.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2223-052.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2223-052.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2223-052.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2223-052.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2223-052.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2223-052.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu2223-052.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+  <resource name="0003-066">
+    <param datatype="double" name="DecPnt" ucd="pos.eq.dec;instr" unit="deg" value="-6.39314870278">
+      <description>
+        Declination (telescope pointing)
+      </description>
+    </param>
+    <param datatype="double" name="RAPnt" ucd="pos.eq.ra;instr" unit="deg" value="1.55788704167">
+      <description>
+        Right ascension (telescope pointing)
+      </description>
+    </param>
+    <param datatype="int" name="numVis" ucd="meta.number;obs" value="6906">
+      <description>
+        Number of visibility measurements
+      </description>
+    </param>
+    <param arraysize="3" datatype="double" name="IBeam" ucd="instr.beam" unit="deg" value="3.5496577766e-07 1.81623235562e-07 12.1821718216 ">
+      <description>
+        Elliptical synthesized beam shape (major axis, minor axis, rotation)
+      </description>
+    </param>
+    <param datatype="double" name="Cells" ucd="pos.angResolution" unit="deg" value="3.2427024621e-08">
+      <description>
+        Cell angular size (resolution)
+      </description>
+    </param>
+    <param arraysize="10" datatype="char" name="ObsDate" ucd="time.start" value="2007-09-06">
+      <description>
+        Observing date
+      </description>
+    </param>
+    <param datatype="double" name="ISum" ucd="phot.flux.density;arith" unit="Jy" value="1.89278777875">
+      <description>
+        Sum of clean component flux
+      </description>
+    </param>
+    <param datatype="double" name="Size" ucd="pos.angDistance" unit="deg" value="1.10900424204e-05">
+      <description>
+        Image angular size
+      </description>
+    </param>
+    <param datatype="double" name="RA" ucd="pos.eq.ra;src" unit="deg" value="1.55788704167">
+      <description>
+        Right ascension (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="IRMS" ucd="stat.stdev;phot.flux.density" unit="Jy" value="0.003201860236">
+      <description>
+        Root-mean-square flux
+      </description>
+    </param>
+    <param datatype="double" name="IPeak" ucd="phot.flux.density;stat.max" unit="Jy" value="1.0887182951">
+      <description>
+        Peak flux
+      </description>
+    </param>
+    <param datatype="double" name="Freq" ucd="em.freq" unit="Hz" value="15365458750.0">
+      <description>
+        Center frequency
+      </description>
+    </param>
+    <param datatype="double" name="Dec" ucd="pos.eq.dec;src" unit="deg" value="-6.39314870278">
+      <description>
+        Declination (phase center)
+      </description>
+    </param>
+    <param datatype="double" name="BW" ucd="instr.bandwidth" unit="Hz" value="32000000.0">
+      <description>
+        Bandwidth
+      </description>
+    </param>
+    <param datatype="double" name="Exposure" ucd="time.duration;obs.exposure" unit="8.64x10+4s" value="0.029297709465">
+      <description>
+        Exposure time (fraction of day)
+      </description>
+    </param>
+    <table name="files">
+      <field arraysize="*" datatype="char" name="file name" ucd="meta;meta.file"/>
+      <field arraysize="*" datatype="char" name="description" ucd="meta.title"/>
+      <data>
+        <tabledata>
+          <tr>
+            <td>
+              BL0149AGKu0003-066.IImgSC.fits
+            </td>
+            <td>
+              Intermediate target image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0003-066.IClean.fits
+            </td>
+            <td>
+              Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0003-066.ICalSC.fits
+            </td>
+            <td>
+              Calibrator Image
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0003-066.cntr.ps
+            </td>
+            <td>
+              Contour plot
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0003-066.cntr.jpg
+            </td>
+            <td>
+              Contour plot (Stokes I)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0003-066.amp.jpg
+            </td>
+            <td>
+              Amp vs. uv Dist
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0003-066.uv.jpg
+            </td>
+            <td>
+              u vs. v 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              BL0149AGKu0003-066.ri.jpg
+            </td>
+            <td>
+              Re vs. Im
+            </td>
+          </tr>
+        </tabledata>
+      </data>
+    </table>
+  </resource>
+</votable>
