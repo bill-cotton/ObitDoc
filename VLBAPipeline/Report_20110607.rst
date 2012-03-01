@@ -1,0 +1,64 @@
+===================================
+VLBA Pipeline Project Status Report
+===================================
+
+:Authors: - Jared Crossley
+          - Bill Cotton
+:Date: 2011-06-07
+
+The VLBA Pipeline is automated data reduction software that runs within the
+Obit algorithm development system.  The pipeline is intended to create end-user
+data products (images, calibration tables, plots, etc.) from non-proprietary
+VLBA archival visibility data.  The pipeline will enhance the NRAO archive by
+providing users with immediate access to reference images and calibrated
+visibility data.
+
+The pipeline consists of 2,500 lines of Obit (Python) code that automate:
+
+* retrieval of raw data from the VLBA archive,
+* filling, editing, calibrating, and imaging of this data,
+* and generation of end-user data files including calibrated visibility
+  data, images, and diagnostic plots.
+
+Data processing is performed using a combination of AIPS and Obit routines.
+
+Pipeline development began in the summer of 2010.  We expect pipeline operation
+to begin before the end of June 2011.  We are currently collaborating with John
+Benson to make the pipeline data products ready for the NRAO archive.
+Ultimately, adding pipeline data products to the archive will be an automated
+process.  At that point, the only interactive part of the pipeline will be
+initially selecting a set of raw data files to process and validating the final
+data products prior to archiving.
+
+During the development phase we have made use of the MOJAVE survey data because
+it provides a large, uniform set of continuum observations of bright sources.
+All tests thus far indicate that the pipeline works robustly on these data
+sets.  Pipeline processing of *all* public MOJAVE data will be relatively fast:
+weeks of CPU time, and days of human-interactive startup and validation.
+Beyond MOJAVE, we plan to self-calibrate and image all continuum observations
+(excluding astrometry projects and projects requiring phase referencing).  As
+we progress to processing less-uniform and more challenging data sets,
+additional development work will be required, though we expect the relative
+amount of development and testing will decrease as the project continues and
+the pipeline becomes more robust.  
+
+Two additional applications of the pipeline are worth noting:
+
+* The pipeline could be used to process proprietary data.  This may require
+  review or modification of the current data access policy, but could
+  potentially open the VLBA to less experienced users.
+* Walter Brisken has indicated that our pipeline also has application to VLBA
+  operations.  Specifically, the pipeline can be used for: (1) quick processing
+  of weekly test correlations; (2) fringe searches on fragments of projects,
+  allowing the clocks to be set more accurately during correlations, and making
+  greater averaging of data possible.
+
+Bill Cotton began development work on the VLBA pipeline in the summer of 2010.
+Bill laid the ground work by writing functions for editing, calibration, and
+imaging.  In September, Jared Crossley joined the project.  Jared contributed
+to the pipeline by adding functions for generating diagnostic plots, an HTML
+project "report", a VOTable that will be used to feed pipeline products back to
+the archive, and an interface for automated archive query and download.  In
+addition, Jared has also contributed general improvements to the Obit system
+including the development of a preliminary online documentation system and a
+number of other changes that have made Obit more user- and developer-friendly.

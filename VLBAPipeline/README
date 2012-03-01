@@ -1,13 +1,16 @@
-The VLBA Pipeline Manual is typeset using Latex.
+* The VLBA Pipeline User Manual is provided as a ReStructuredText (RST)
+  document. Use the make file to generate HTML and PDF versions of the
+  document. This requires that docutils <http://docutils.sourceforge.net/> be
+  installed.
 
-This document uses the IEEE Latex style file (Unix LaTeX2e Transactions Style File).  The IEEE class file is included; documentation on this class can be found here:
+* The VLBA Pipeline Manual is typeset using Latex.  It uses the IEEE Latex
+  style file (Unix LaTeX2e Transactions Style File).  The IEEE class file is
+  included; documentation on this class can be found here:
+  http://www.ieee.org/publications_standards/publications/authors/authors_journals.html
 
-http://www.ieee.org/publications_standards/publications/authors/authors_journals.html
+* A table of file data and metadata products can be generated from VOTable.xml
+  using the XSL stylesheet.  Use the make file to generate the table as an
+  HTML document.  This requires that xsltproc be installed.
 
-Documentation of Python modules in the appendix of this manual is generated using epydoc.
-
-http://epydoc.sourceforge.net/
-
-Epydoc generates latex files from Python docstrings.  An example command invoking epydoc to generate documentation for the VLBACal module is,
-
-epydoc --latex --docformat plaintext VLBACal.py
+* The 2011-06-07 Report is a ReStructuredText document.  Use the makefile to
+  generate a PDF version of this report.  This requires docutils.
