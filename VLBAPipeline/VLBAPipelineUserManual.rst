@@ -2,10 +2,12 @@
 VLBA Pipeline User Manual
 =========================
 
-:Author: Jared Crossley <jcrossle@nrao.edu>, Bill Cotton <bcotton@nrao.edu>, 
-         Gareth Hunt <ghunt@nrao.edu>
+:Authors: Jared Crossley, Bill Cotton, Gareth Hunt
 :Organization: National Radio Astronomy Observatory
-:Date: 29 February 2012
+:Contact: `Jared Crossley`_
+:Date: 1 March 2012
+
+.. _`Jared Crossley`: http://www.aoc.nrao.edu/~jcrossle/
 
 .. NOTES:
    * Setting up AIPSSetup.py is involved.  Setting adirs and fdirs is not
@@ -31,7 +33,21 @@ is to automate the
   subsequent ingestion into the NRAO archive.  
 
 Currently, the pipeline works only on continuum data.  This manual describes
-the installation and operation of the pipeline software.
+the installation and operation of the pipeline software.  For more details on
+the pipeline data reduction process see 
+`VLBA Pipeline: Outline of Data Reduction Heuristics`_.
+
+.. _`VLBA Pipeline: Outline of Data Reduction Heuristics`: http://www.cv.nrao.edu/~jcrossle/VLBAPipeline/PipelineHeuristics.pdf
+
+A `PDF version of this document`_ is available on the Web. The source can be
+obtained from the ``ObitDoc`` svn repository.  Run ``make`` to format this
+manual as PDF and HTML::
+
+    $ svn co https://svn.cv.nrao.edu/svn/ObitDoc/VLBAPipeline
+    $ cd VLBAPipeline
+    $ make
+
+.. _`PDF version of this document`: http://www.cv.nrao.edu/~jcrossle/VLBAPipeline/VLBAPipelineUserManual.pdf
 
 -------------------------
 Download and Installation
@@ -306,7 +322,7 @@ categories: multi-source data and single-source data.  A `complete table`_ of
 file data and metadata products is available online.  Some of the most useful
 data products are described below.
 
-.. _complete table: https://safe.nrao.edu/wiki/bin/view/VLBA/PipelineMetadata
+.. _complete table: http://www.cv.nrao.edu/~jcrossle/VLBAPipeline/metadata.html
 
 HTML Report (ex: ``BL0149_BN_2cm.report.html``)
     A human-readable report on all metadata and file data products generated in 
@@ -385,7 +401,7 @@ Troubleshooting
     you find a file that you believe should be added to this list please email
     the authors.
 
-.. _list of VLBA data files: https://science.nrao.edu/facilities/vlba/pipeline-1/raw-data-known-problems/view
+.. _list of VLBA data files: http://www.cv.nrao.edu/~jcrossle/VLBAPipeline/BadData.txt
 
 ----------
 Appendices
