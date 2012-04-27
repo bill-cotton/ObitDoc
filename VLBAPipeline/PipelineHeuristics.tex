@@ -7,14 +7,15 @@
 {\Large VLBA Pipeline: Outline of Data Reduction Heuristics} \\
 ~ \\
 Gareth Hunt, Bill Cotton, \& Jared Crossley \\
-29 February 2012
+%29 February 2012 
+\today
 \end{center}}
 
 \section{Introduction}
 
 The VLBA Pipeline was designed to take uncalibrated VLBA visibility data
 directly from the NRAO archive and to create a file set for
-reingestion into the archive.  
+reingestion into the archive or for direct use by end users.
 This file set contains reference images with associated diagnostic
 plots, reports, scripts, and log files, plus calibrated visibility data
 with associated tables.
@@ -40,6 +41,8 @@ coherence losses.
 \item Continuum imaging\\
 Spectral line data sets can have the continuum calibration done but
 no spectral cubes are made.
+Corrections based on the pulsed--cal system may need to be turned off
+if this system was not used.
 \item Imaging including self-calibration\\
 Multi--resolution imaging with self calibration is done.
 \item No polarization \\
@@ -57,8 +60,8 @@ The VLBA pipeline is:
 \item Writes FITS images and (AIPS FITAB format) calibrated datasets.
 \end{itemize}
 
-The pipeline scripts are available for checkout from a Subversion
-(SVN) repository (https://svn.cv.nrao.edu/svn/VLBApipeline).
+The pipeline scripts are publically available for checkout from a
+Subversion (SVN) repository (https://svn.cv.nrao.edu/svn/VLBApipeline).
 
 AIPS (http://www.aips.nrao.edu/index.shtml) and
 
@@ -86,7 +89,7 @@ http://www.nrao.edu/2cmsurvey/.
 For consistency between epochs, the Mojave project necessarily has limitations
 on the data that they fully reduce.  The VLBA pipeline has no such limitations,
 and about 3500 individual images were produced from data taken between August
-2003 and December 2011.  These images typically had dymanic ranges (peak:rms)
+2003 and December 2011.  These images typically had dynamic ranges (peak:rms)
 of 25-35dB.  Roughly 3200 images were available for direct comparison.  The
 comparison was excellent.  On average, the integrated fluxes for the pipeline
 were just over 5\% lower than the images in the Mojave catalog, as predicted.
@@ -97,6 +100,15 @@ The pipeline processing uses the following processes.
 Many of the default processing parameters are frequency dependent and
 may be overridden and the various steps may be turned on or off.
 
+The following gives an overview of the processing.
+Details are documented in the main pipeline processing script,
+VLBAContPipe.py, and in the routines called in VLBACals.py (see python
+online documentation).
+The processing is driven by a parameter script which is initially
+automatically generated but may be modified for detailed control of
+the processing; parameters are described in the Appendix.
+These are described in more detail in the VLBA Pipeline User Manual.
+
 \begin{enumerate}
 \item Data retrieved from the archive\\
 Pre-DifX data may be either multiple FITS IDI format files or a single
@@ -104,11 +116,11 @@ AIPS UVFITS data file.
 Data from the DifX correlator are in a single FITS IDI format file.
 \item Data converted to AIPS format\\
 Multiple  FITS IDI format files can be concatenated.
-\item ``Quack''\\
-The first few seconds of each scan is flagged.
+\item ``Flag''\\
+Data at low elevations and at low fringe rates are flagged using AIPS/UVFLG.
 \item Initial data filtering \\
-The data are edited with a running median window to flag deviant data
-such as when an antenna is late on source.
+The data are edited with a running median window (Obit/MednFlag) to
+flag deviant data such as when an antenna is late on source.
 \item Standard ``external'' calibration
 \begin {enumerate}
 \item 1/2 bit sampling correction\\
@@ -116,6 +128,14 @@ Uses AIPS task ACCOR.
 \item Parallactic angle correction\\
 Phases are corrected for the effects of parallactic angle.
 Uses AIPS task CLCOR.
+\item Ionospheric correction (TEC)\\
+Relevant ionospheric models are downloaded from the Web and applied
+using AIPS/TECOR to correct for the Total Electron Content (TEC) given
+by the model.
+\item Earth Orientation Parameters (EOP) \\
+The most recent IERS earth orientation parameters (UT1-UTC, position of
+pole) are downloaded from the Web and used by AIPS/CLCOR to correct
+the VLBA correlator model with the ``final'' values.
 \item Tsys/atmosphere/gain correction\\
 The amplitudes are converted to Jy using measured system temperatures,
 standard gain curves and atmospheric opacity corrections estimated
@@ -157,7 +177,7 @@ Imaging uses Obit task SCMap.
 \item Delay calibration\\
 Group delay fits are made using a fringe fit on the calibrator sources
 using the source models derived in the previous step.
-Obit tasks Calib  + CLCal are used for the fringe fitting.
+Obit tasks Calib  + CLCal are used for the fringe fitting + correction.
 \item Bandpass correction \\
 A bandpass correction for the amplitudes and phases in each channel is
 determined from the best calibrator scan and the model derived for
@@ -173,6 +193,11 @@ Obit tasks Calib  + CLCal are used.
 \item Calibrator amplitude calibration \\
 Longer time amplitude solutions are determined for the calibrator
 sources. 
+In able to prevent poor weather or other conditions at a small number
+of antennas from skewing the amplitude scale, a subset of the antennas
+with the most stable set of fitted gains are used to stabilize the
+flux density scale.
+The average gain for these antennas is divided into all gain solutions.
 The strong enough calibrator sources have the solutions determined for
 them applied in the calibration table.
 Other sources use a smoothed version of the amplitude calibration
@@ -211,7 +236,7 @@ Final and calibration images are written to FITS files.
 The averaged and calibrated uv data and the tables from the initial
 data are written to AIPS FITAB format FITS files.
 \item Reports\\
-Statistics of the images are determined and a HTML page constructed to
+Statistics of the images are determined and an HTML page constructed to
 simplify viewing the results.
 An XML file manifest is generated for re-ingestion into the archive.
 \item Cleanup\\
@@ -236,8 +261,8 @@ directory.  For approved pipeline use, this directory is stored on the lustre
 file system in NRAO Socorro.  From there it is ingested directly into the NRAO
 archive.
 
-Sources that did not image acceptably are added to failTargets list.  This is
-referenced in the HTML Report.
+Sources that did not image acceptably are added to the failTargets
+list.  This is referenced in the HTML Report.
 
 \clearpage
 \appendix
@@ -251,7 +276,7 @@ re-run or re-start the pipeline using different values than the defaults.
 Several parameters are actually placeholders for derived intermediate products:
 failTarg, contCalModel, targetModel; although, in principle, contCalModel could
 be user-supplied.  These are initialized as specified here at the beginning of
-the pipeline process.
+the pipeline process but may be overridden in the parameter script.
 
 \vfill
 \begin{center}
@@ -271,17 +296,47 @@ QuantFlag & 0.0 & If $>$0, flag solutions $<$ QuantFlag \\
 doPACor & True & Make parallactic angle correction \\
 
 \hline
+\multicolumn{3}{|l|}{Total Electron Content (TEC) correction} \\
+\hline
+doTECor & True & Make TEC correction \\
+
+\hline
+\multicolumn{3}{|l|}{Earth Orientation Parameters (EOP) correction} \\
+\hline
+doEOPCor & True & Make EOP correction \\
+
+\hline
 \multicolumn{3}{|l|}{Opacity/Tsys correction} \\
 \hline
 doOpacCor & True & Make Opacity/Tsys/gain correction? \\
 OpacSmoo & 0.25 & Smoothing time (hr) for opacity corrections \\
 
 \hline
+\multicolumn{3}{|l|}{Apply phase cal corrections?} \\
+\hline
+doPCcor & True & Apply PC table? \\
+doPCPlot & True & Plot results? \\
+\hline
+\multicolumn{3}{|l|}{``Manual" phase cal - even to tweak up PCals} \\
+\hline
+doManPCal & True & Determine and apply manual phase cals? \\
+manPCsolInt & None & Manual phase cal solution interval (min) \\
+manPCSmoo & None & Manual phase cal smoothing time (hr) \\
+doManPCalPlot & True & Plot the phase and delays from manual phase cal \\
+
+\hline
 \multicolumn{3}{|l|}{Special editing list} \\
 \hline
 doEditList & False & Edit using editList? \\
 editFG & 2 & Table to apply edit list to \\
-editList & [] & EditList \\
+editList & [ ] & EditList \\
+
+\hline
+\end{tabular}
+\end{center}
+%\clearpage
+\begin{center}
+\begin{tabular}{|l|c|l|}
 
 \hline
 \multicolumn{3}{|l|}{Do median flagging} \\
@@ -295,25 +350,24 @@ mednAvgFreq & 0 & Median 1=$>$avg chAvg chans, 2=$>$avg all chan, \\
 mednChAvg & 1 & Median number of channels to average \\
 
 \hline
-\multicolumn{3}{|l|}{Apply phase cal corrections?} \\
+\multicolumn{3}{|l|}{Flag Suspect data} \\
 \hline
-doPCcor & True & Apply PC table? \\
-doPCPlot & True & Plot results? \\
+doFlags & True & UVFLG editing? \\
+elLim   & 10.0 & Min. allowed source elevation (deg)\\
+flag0   & 2.0  & if $> 1$. flag data near zero fringe rate \\
 
 \hline
-\end{tabular}
-\end{center}
-\clearpage
-\begin{center}
-\begin{tabular}{|l|c|l|}
-
+\multicolumn{3}{|l|}{Editing} \\
 \hline
-\multicolumn{3}{|l|}{``Manual" phase cal - even to tweak up PCals} \\
-\hline
-doManPCal & True & Determine and apply manual phase cals? \\
-manPCsolInt & None & Manual phase cal solution interval (min) \\
-manPCSmoo & None & Manual phase cal smoothing time (hr) \\
-doManPCalPlot & True & Plot the phase and delays from manual phase cal \\
+doClearTab & True & Clear cal/edit tables \\
+doGain & True & Clear SN and CL tables $>$1 \\
+doFlag & True & Clear FG tables $>$ 1 \\
+doBP & True & Clear BP tables? \\
+doCopyFG & True & Copy FG 1 to FG 2quack \\
+doQuack & False & Quack data? \\
+quackBegDrop & 0.1 & Time to drop from start of each scan in min \\
+quackEndDrop & 0.0 & Time to drop from end of each scan in min \\
+quackReason & ``Quack" & Reason string \\
 
 \hline
 \multicolumn{3}{|l|}{Bandpass Calibration?} \\
@@ -334,17 +388,11 @@ specIndex & 0.0 & Spectral index of BP Cal \\
 doSpecPlot & True & Plot the amp. and phase across the spectrum \\
 
 \hline
-\multicolumn{3}{|l|}{Editing} \\
-\hline
-doClearTab & True & Clear cal/edit tables \\
-doGain & True & Clear SN and CL tables $>$1 \\
-doFlag & True & Clear FG tables $>$ 1 \\
-doBP & True & Clear BP tables? \\
-doCopyFG & True & Copy FG 1 to FG 2quack \\
-doQuack & True & Quack data? \\
-quackBegDrop & 0.1 & Time to drop from start of each scan in min \\
-quackEndDrop & 0.0 & Time to drop from end of each scan in min \\
-quackReason & ``Quack" & Reason string \\
+\end{tabular}
+\end{center}
+\clearpage
+\begin{center}
+\begin{tabular}{|l|c|l|}
 
 \hline
 \multicolumn{3}{|l|}{Amp/phase calibration parameters} \\
@@ -353,24 +401,17 @@ refAnt & 0 & Reference antenna \\
 refAnts & [0] & List of Reference antenna for fringe fitting \\
 
 \hline
-\end{tabular}
-\end{center}
-\clearpage
-\begin{center}
-\begin{tabular}{|l|c|l|}
-
-\hline
 \multicolumn{3}{|l|}{Imaging calibrators (contCals) and targets} \\
 \hline
 doImgCal & True & Image calibrators \\
-targets & [] & List of target sources \\
-failTarg & [] & List of failed target (source,process) \\
+targets & [ ] & List of target sources \\
+failTarg & [ ] & List of failed target (source,process) \\
 doImgTarget & True & Image targets? \\
 outCclass & ``ICalSC" & Output calibrator image class \\
 outTclass & ``IImgSC" & Output target temporary image class \\
 outIclass & ``IClean" & Output target final image class \\
 Robust & 0.0 & Weighting robust parameter \\
-FOV & None & Field of view radius in deg. \\
+%FOV & None & Field of view radius in deg. \\
 Niter & 500 & Max number of clean iterations \\
 minFlux & 0.0 & Minimum CLEAN flux density \\
 minSNR & 4.0 & Minimum Allowed SNR \\
@@ -379,10 +420,10 @@ avgPol & True & Average poln in self cal? \\
 avgIF & False & Average IF in self cal? \\
 maxPSCLoop & 6 & Max. number of phase self cal loops \\
 minFluxPSC & 0.05 & Min flux density peak for phase self cal \\
-solPInt & None & phase self cal solution interval (min) \\
+%solPInt & None & phase self cal solution interval (min) \\
 maxASCLoop & 1 & Max. number of Amp+phase self cal loops \\
 minFluxASC & 0.2 & Min flux density peak for amp+phase self cal \\
-solAInt & None & amp+phase self cal solution interval (min) \\
+%solAInt & None & amp+phase self cal solution interval (min) \\
 nTaper & 1 & Number of additional imaging multiresolution tapers \\
 Tapers & [20.0,0.0] & List of tapers in pixels \\
 do3D & False & Make ref. pixel tangent to celest. sphere for each facet \\
@@ -405,7 +446,7 @@ targetModel & None & No target model yet \\
 doFindOK & True & Search for OK cals if contCals not given \\
 minOKFract & 0.5 & Minimum fraction of acceptable solutions \\
 minOKSNR & 20.0 & Minimum test SNR \\
-failTarg & [] & list of failed sources \\
+failTarg & [ ] & list of failed sources \\
 
 \hline
 \end{tabular}
@@ -425,6 +466,11 @@ delaySmoo & None & Delay smoothing time (hr) \\
 \hline
 doAmpCal & True & Determine/smooth/apply amplitudes \\
  & & from contCals \\
+doStable        &  True  & Stablize gains with best antennas? \\
+stableFract     &  0.667 & Fraction of antenna to use in stabilization \\
+stableBadAnts   &  [ ]   & List of antennas to exclude from stabilization \\
+stableGoodAnts" &  [ ]   & List of antennas to always include in stabilization \\
+
 
 \hline
 \multicolumn{3}{|l|}{Apply calibration and average?} \\
@@ -461,6 +507,13 @@ RLCal & None & RL Calibrator source name, if given, a list of triplets, \\
  & & (name, R-L phase (deg@1GHz), RM (rad/$m^{2}$)) \\
 
 \hline
+\end{tabular}
+\end{center}
+\clearpage
+\begin{center}
+\begin{tabular}{|l|c|l|}
+
+\hline
 \multicolumn{3}{|l|}{Clip excessive visibilities} \\
 \hline
 doClipFlag & True & Clip (flag) visibilities above sum of CCs? \\
@@ -474,13 +527,6 @@ clipTime & 0.25 & Time in min for which the data is to be averaged \\
 doImgFullTarget & True & Final Image/Clean/selfcal \\
 Stokes & ``I'' & Stokes to image \\
 doKntrPlots & True & Contour plots \\
-
-\hline
-\end{tabular}
-\end{center}
-\clearpage
-\begin{center}
-\begin{tabular}{|l|c|l|}
 
 \hline
 \multicolumn{3}{|l|}{Final} \\
