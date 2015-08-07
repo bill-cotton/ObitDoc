@@ -1,0 +1,562 @@
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2015.4.8)  20 JUL 2015 16:26
+entering extended mode
+ %&-line parsing enabled.
+**ALMAScripts
+(./ALMAScripts.tex
+LaTeX2e <2005/12/01>
+Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
+erman, danish, esperanto, spanish, catalan, galician, estonian, farsi, finnish,
+ french, greek, monogreek, ancientgreek, croatian, hungarian, interlingua, ibyc
+us, indonesian, icelandic, italian, latin, mongolian, dutch, norsk, polish, por
+tuguese, pinyin, romanian, russian, slovenian, uppersorbian, serbian, swedish, 
+turkish, ukenglish, ukrainian, loaded.
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size11.clo
+File: size11.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (./ALMAScripts.aux)
+\openout1 = `ALMAScripts.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 38.
+
+(/usr/share/texmf/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 38.
+
+Overfull \hbox (9.22847pt too wide) in paragraph at lines 44--51
+\OT1/cmr/m/n/10.95 Obit (http://www.cv.nrao.edu/ bcot-ton/Obit.html) are in-sta
+lled on all NRAO
+ []
+
+[1
+
+]
+Overfull \hbox (58.7748pt too wide) in paragraph at lines 55--61
+\OT1/cmr/m/n/10.95 archive ALMA Sci-ence Data Model (ASDM) files us-ing rou-tin
+e AL-MACal.ALMAPrepare
+ []
+
+
+Overfull \hbox (6.61255pt too wide) in paragraph at lines 98--105
+\OT1/cmr/m/n/10.95 All stan-dard, con-stant cal-i-bra-tor mod-els are weak and 
+re-solved at mm/submm
+ []
+
+[2]
+Overfull \hbox (41.56134pt too wide) in paragraph at lines 129--136
+\OT1/cmr/m/n/10.95 These dicts are cre-ated in the pa-ram-e-ter script by rou-t
+ine AL-MACal.ALMACalModel
+ []
+
+[3] [4]
+Overfull \hbox (25.16208pt too wide) in paragraph at lines 215--215
+[]\OT1/cmtt/m/n/10.95 ############################# Initialize OBIT ###########
+##########[] 
+ []
+
+
+Overfull \hbox (25.16208pt too wide) in paragraph at lines 215--215
+[]\OT1/cmtt/m/n/10.95 DA00         = "/home/AIPS/DA00/"   # <==== set AIPS DA00
+ directory[] 
+ []
+
+
+Overfull \hbox (13.6647pt too wide) in paragraph at lines 215--215
+[]\OT1/cmtt/m/n/10.95 OBIT_EXEC    = "/export/data_1/obit/ObitInstall/ObitSyste
+m/Obit/"[] 
+ []
+
+
+Overfull \hbox (59.6542pt too wide) in paragraph at lines 215--215
+[]\OT1/cmtt/m/n/10.95 ObitTalkUtil.SetEnviron(AIPS_ROOT=AIPS_ROOT, AIPS_VERSION
+=AIPS_VERSION, \[] 
+ []
+
+
+Overfull \hbox (48.15683pt too wide) in paragraph at lines 215--215
+[]                        \OT1/cmtt/m/n/10.95 OBIT_EXEC=OBIT_EXEC, DA00=DA00, A
+RCH="LINUX", \[] 
+ []
+
+[5] [6] [7]
+Overfull \hbox (128.63846pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 check                  = parms["check"]      # Only check
+ script, don't execute tasks[] 
+ []
+
+
+Overfull \hbox (13.6647pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doLoadArchive"] = T                   # Load from 
+archive?[] 
+ []
+
+
+Overfull \hbox (30.91077pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doClearTab"]    = T                   # Clear cal/
+edit tables[] 
+ []
+
+
+Overfull \hbox (7.91602pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doCopyFG"]      = T                   # Copy FG 1 
+to FG 2[] 
+ []
+
+
+Overfull \hbox (25.16208pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doEditList"]    = parms["doEditList"] # Edit using
+ editList?[] 
+ []
+
+
+Overfull \hbox (19.41339pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doShad"]        = parms["doShad"]     # Flag shado
+wed data?[] 
+ []
+
+
+Overfull \hbox (48.15683pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doOnlineCal"]   = T                   # Apply onli
+ne calibration[] 
+ []
+
+
+Overfull \hbox (111.3924pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doRMSAvg"]      = T                   # Do RMS/Mea
+n editing for calibrators[] 
+ []
+
+
+Overfull \hbox (48.15683pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doDelayCal"]    = T                   # Group Dela
+y calibration?[] 
+ []
+
+
+Overfull \hbox (82.64896pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doBPCal"]       = T                   # Determine 
+Bandpass calibration[] 
+ []
+
+
+Overfull \hbox (122.88977pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doXYFixGain"]   = T                   # set X/Y ga
+ins and initial calibration[] 
+ []
+
+
+Overfull \hbox (59.6542pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doImgCal"]      = T                   # Self calib
+rate calibrators[] 
+ []
+
+
+Overfull \hbox (7.91602pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doPhaseCal"]    = T                   # Phase cali
+bration[] 
+ []
+
+
+Overfull \hbox (65.4029pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doAmpPhaseCal"] = T                   # Amplitude/
+phase calibration[] 
+ []
+
+
+Overfull \hbox (145.88452pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doAutoFlag"]    = T                   # Autoflag e
+diting after final calibration?[] 
+ []
+
+
+Overfull \hbox (59.6542pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doCalAvg"]      = T                   # calibrate 
+and average data[] 
+ []
+
+
+Overfull \hbox (30.91077pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doXYDelay"]     = T                   # X/Y Delay 
+calibration[] 
+ []
+
+
+Overfull \hbox (122.88977pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doPolCal"]      = parms["doPolCal"]   # Instrument
+al polarization calibration[] 
+ []
+
+
+Overfull \hbox (25.16208pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doSaveImg"]     = T                   # Save resul
+ts to FITS[] 
+ []
+
+
+Overfull \hbox (88.39764pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doSaveUV"]      = T                   # Save calib
+rated UV data to FITS[] 
+ []
+
+
+Overfull \hbox (36.65945pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doSaveTab"]     = T                   # Save UV ta
+bles to FITS[] 
+ []
+
+
+Overfull \hbox (42.40814pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doDiagPlots"]   = T                   # Source dia
+gnostic plots[] 
+ []
+
+[8]
+Overfull \hbox (82.64896pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doMetadata"]    = T                   # Generate m
+etadata dictionaries[] 
+ []
+
+
+Overfull \hbox (25.16208pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doHTML"]        = T                   # Generate H
+TML report[] 
+ []
+
+
+Overfull \hbox (13.6647pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doCleanup"]     = T                   # Destroy AI
+PS files[] 
+ []
+
+
+Overfull \hbox (13.6647pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doSNPlot"]      = T                   # Plot SN ta
+bles etc[] 
+ []
+
+
+Overfull \hbox (13.6647pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doBPPlot"]      = T                   # Plot BP ta
+bles etc[] 
+ []
+
+
+Overfull \hbox (48.15683pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doReport"]      = T                   # Individual
+ source report[] 
+ []
+
+
+Overfull \hbox (7.91602pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doRawSpecPlot"] = @PLOTSRC@!='None'   # Plot Raw s
+pectrum[] 
+ []
+
+
+Overfull \hbox (88.39764pt too wide) in paragraph at lines 332--332
+[]\OT1/cmtt/m/n/10.95 parms["doSpecPlot"]    = @PLOTSRC@!='None'   # Plot spect
+rum at various stages[] 
+ []
+
+
+Overfull \hbox (36.65945pt too wide) in paragraph at lines 342--342
+[]\OT1/cmtt/m/n/10.95 parms['some_parameter'] = value   # ******************* S
+et this ****[] 
+ []
+
+
+Overfull \hbox (52.53714pt too wide) in paragraph at lines 355--355
+ []\OT1/cmtt/m/n/10.95 ACals[0]['CalModelFlux'] = 1.558   # ALMA 2013-12-21 1.5
+58 +/- 0.06[] 
+ []
+
+
+Overfull \hbox (67.14061pt too wide) in paragraph at lines 356--361
+\OT1/cmr/m/n/10.95 ALMA cal-i-bra-tor mon-i-tor-ing re-sults are avail-able at 
+https://almascience.eso.org/sc/.
+ []
+
+
+Overfull \hbox (39.45045pt too wide) in paragraph at lines 361--365
+\OT1/cmr/m/n/10.95 Absolute clip-ping level for any cal-i-bra-tor/target is giv
+en by IClip=[level[]Jy,0.1].
+ []
+
+[9] [10]
+Overfull \hbox (10.68846pt too wide) in paragraph at lines 413--418
+\OT1/cmr/m/n/10.95 This step is per-formed from ObitTalk to gen-er-ate the pa-r
+am-e-ter script(s).
+ []
+
+
+Overfull \hbox (52.53714pt too wide) in paragraph at lines 422--422
+ []\OT1/cmtt/m/n/10.95 >>> ASDMRoots = ["/export/myData/12A-999.sb9332941.eb936
+0588.../",][] 
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 430.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 430.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 430.
+
+Overfull \hbox (60.92332pt too wide) in paragraph at lines 434--445
+ [] 
+ []
+
+
+Overfull \hbox (67.5541pt too wide) in paragraph at lines 451--462
+ [] 
+ []
+
+[11]
+Overfull \hbox (77.92635pt too wide) in paragraph at lines 470--482
+ [] 
+ []
+
+
+Overfull \hbox (8.78912pt too wide) in paragraph at lines 489--495
+ [] 
+ []
+
+[12]
+Overfull \hbox (51.98093pt too wide) in paragraph at lines 530--536
+ [] 
+ []
+
+
+Overfull \hbox (58.28583pt too wide) in paragraph at lines 565--565
+ []     \OT1/cmtt/m/n/10.95 "IFs":[1,0],"Chans":[1,0],  "Stokes":'1111',"Reason
+":"No Rcvr"}[] 
+ []
+
+[13]
+Overfull \hbox (24.21043pt too wide) in paragraph at lines 582--590
+ [] 
+ []
+
+
+Overfull \hbox (3.2655pt too wide) in paragraph at lines 592--596
+\OT1/cmr/m/n/10.95 In the more com-pact ALMA con-fig-u-ra-tions, some an-ten-na
+s may shadow
+ []
+
+
+Overfull \hbox (41.97385pt too wide) in paragraph at lines 626--637
+ [] 
+ []
+
+[14]
+Overfull \hbox (17.51884pt too wide) in paragraph at lines 646--653
+ [] 
+ []
+
+
+Overfull \hbox (13.26245pt too wide) in paragraph at lines 655--665
+\OT1/cmr/m/n/10.95 the ASDM helps in this choice. If the ref-er-ence an-tenna (
+parms[``refAnt''])
+ []
+
+
+Overfull \hbox (21.62495pt too wide) in paragraph at lines 680--689
+ [] 
+ []
+
+[15]
+Overfull \hbox (96.4501pt too wide) in paragraph at lines 701--723
+ [] 
+ []
+
+[16]
+Overfull \hbox (107.76512pt too wide) in paragraph at lines 733--756
+ [] 
+ []
+
+[17]
+Overfull \hbox (47.62372pt too wide) in paragraph at lines 796--814
+ [] 
+ []
+
+[18]
+Overfull \hbox (42.00424pt too wide) in paragraph at lines 825--838
+ [] 
+ []
+
+
+Overfull \hbox (28.18416pt too wide) in paragraph at lines 840--856
+\OT1/cmr/m/n/10.95 parms["project"]+"[]"+parms["session"]+"[]"+parms["band"]+"A
+PCal.ps". 
+ []
+
+[19]
+Overfull \hbox (122.15222pt too wide) in paragraph at lines 857--878
+ [] 
+ []
+
+
+Overfull \hbox (23.54137pt too wide) in paragraph at lines 885--901
+ [] 
+ []
+
+[20]
+Overfull \hbox (83.21881pt too wide) in paragraph at lines 908--924
+ [] 
+ []
+
+
+Overfull \hbox (0.98547pt too wide) in paragraph at lines 926--928
+\OT1/cmr/m/n/10.95 if XClip[0] is not None, cross po-lar-ized data with am-pli-
+tudes $\OML/cmm/m/it/10.95 >$ \OT1/cmr/m/n/10.95 XClip[0]
+ []
+
+
+Overfull \hbox (10.27962pt too wide) in paragraph at lines 929--934
+ [] 
+ []
+
+
+Overfull \hbox (9.31966pt too wide) in paragraph at lines 936--945
+\OT1/cmr/m/n/10.95 serted man-u-ally as parms['XYDelaySource'] and parms['XYDel
+ayTime'].
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 936--945
+
+ []
+
+[21]
+Overfull \hbox (69.89629pt too wide) in paragraph at lines 946--963
+ [] 
+ []
+
+
+Overfull \hbox (39.66296pt too wide) in paragraph at lines 965--979
+\OT1/cmr/m/n/10.95 data con-tains XY and YX cor-re-la-tions. The func-tion AL-M
+ACal.ALMAPrepare
+ []
+
+
+Overfull \hbox (1.49036pt too wide) in paragraph at lines 965--979
+\OT1/cmr/m/n/10.95 sets this list to those with an in-tent ``CAL-I-BRATE[]POLAR
+IZATION''.
+ []
+
+
+Overfull \hbox (18.21837pt too wide) in paragraph at lines 988--1005
+ [] 
+ []
+
+[22]
+Overfull \hbox (0.48537pt too wide) in paragraph at lines 1011--1019
+ [] 
+ []
+
+
+Overfull \hbox (29.12096pt too wide) in paragraph at lines 1021--1029
+\OT1/cmr/m/n/10.95 All tar-gets are im-aged and de-con-volved us-ing Obit/Image
+r or Obit/MFImage
+ []
+
+
+Overfull \hbox (92.46558pt too wide) in paragraph at lines 1036--1075
+ [] 
+ []
+
+[23] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 1078--1079
+
+ []
+
+
+Overfull \hbox (21.5033pt too wide) in paragraph at lines 1101--1109
+ [] 
+ []
+
+
+Overfull \hbox (1.2045pt too wide) in paragraph at lines 1111--1117
+\OT1/cmr/m/n/10.95 parms["project"]+"[]"+parms["session"]+"[]"+parms["band"] fo
+l-lowed
+ []
+
+
+Overfull \hbox (1.2045pt too wide) in paragraph at lines 1126--1133
+\OT1/cmr/m/n/10.95 parms["project"]+"[]"+parms["session"]+"[]"+parms["band"] fo
+l-lowed
+ []
+
+[25]
+Overfull \hbox (1.53304pt too wide) in paragraph at lines 1168--1174
+\OT1/cmr/m/n/10.95 parms["project"]+parms["session"]+parms["band"]+"CalTab.uvta
+b". 
+ []
+
+
+Overfull \hbox (13.7058pt too wide) in paragraph at lines 1185--1188
+\OT1/cmr/m/n/10.95 have pre-fix parms["project"]+"[]"+parms["session"]+"[]"+par
+ms["band"]
+ []
+
+
+Overfull \hbox (4.32121pt too wide) in paragraph at lines 1191--1194
+\OT1/cmr/m/n/10.95 tial edit-ing and de-lay cal-i-bra-tion ap-plied. One set pe
+r pass through
+ []
+
+[26]
+Overfull \hbox (92.9413pt too wide) in paragraph at lines 1204--1206
+\OT1/cmr/m/n/10.95 The source plots have pre-fix parms["project"]+"[]"+parms["s
+ession"]+"[]"+parms["band"]
+ []
+
+
+Overfull \hbox (20.00208pt too wide) in paragraph at lines 1219--1225
+\OT1/cmr/m/n/10.95 parms["project"]+"[]"+parms["session"]+"[]"+parms["band"]+".
+log", and
+ []
+
+
+Overfull \hbox (40.50294pt too wide) in paragraph at lines 1219--1225
+\OT1/cmr/m/n/10.95 parms["project"]+"[]"+parms["session"]+"[]"+parms["band"]+".
+report.html". 
+ []
+
+[27] (./ALMAScripts.aux) ) 
+Here is how much of TeX's memory you used:
+ 255 strings out of 256217
+ 2824 string characters out of 1917096
+ 59804 words of memory out of 1500000
+ 3614 multiletter control sequences out of 10000+200000
+ 8065 words of font info for 29 fonts, out of 1200000 for 2000
+ 645 hyphenation exceptions out of 8191
+ 21i,7n,19p,129b,246s stack positions out of 5000i,500n,6000p,200000b,15000s
+
+Output written on ALMAScripts.dvi (27 pages, 80792 bytes).
