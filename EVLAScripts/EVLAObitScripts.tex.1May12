@@ -1,0 +1,1111 @@
+\documentclass[11pt]{article}
+
+\begin{document}
+
+{
+\begin{center}
+{\Large EVLA Continuum Scripts: \\
+Outline of Data Reduction and Heuristics} \\
+~ \\
+Bill Cotton \\
+\today
+\end{center}}
+
+\section{Introduction}
+
+
+
+\subsection{Scope}
+
+The scope of the present version of the EVLA continuum scripts is to
+perform standard calibration and editing of EVLA data and produce
+continuum, possibly wideband, images of target sources.
+Logs, reports and numerous diagnostic plots help evaluate the results
+of the processing.
+If default processing parameters are adequate, the scripts will start
+from EVLA archive ASDM/BDF files and result in FITS images,
+calibrated data, reports, plots etc.
+The scripting is also capable of being highly tuned to a particular
+project and can be rerun in whole or part with user specified
+parameters.
+
+\subsection{Software}
+
+The EVLA Obit scripts are:
+
+\begin{itemize}
+\item Written in python, and
+\item Use Obit and AIPS tasks to do the data processing, and
+\item Use AIPS data structures for intermediate data, and
+\item Write FITS images and (AIPS FITAB format) calibrated datasets.
+\end{itemize}
+
+AIPS (http://www.aips.nrao.edu/index.shtml) and\\
+Obit (http://www.cv.nrao.edu/~bcotton/Obit.html)
+are installed on all NRAO Linux computers and available for 
+installation via download to non-NRAO computers.
+The EVLA scripts are in the \$OBIT/python directory with the template
+parameter script in \$OBIT/share/scripts.
+
+\section{Execution}
+Several steps are needed to execute the EVLA scripts.
+\subsection{Generate parameter scripts}
+The processing is guided by values in python parameter scripts.
+These scripts can be created and initialized by information gleaned from
+the EVLA archive ALMA Science Data Model (ASDM) files using routine
+EVLACal.EVLAPrepare (see section \ref{Details}).
+This will create one or more parameter files, each of which needs to
+be processed separately.
+
+Alternatively, the parameter file can be derived manually using the
+template file \$OBIT/share/scripts/EVLAContTemplateParm.py and making
+the substitutions described in the file.
+
+\subsection{Modify parameter scripts}
+If the default values in the automatically generated parameter
+script(s) are not appropriate, they can be changed.
+The details of each processing step and the parameters used are
+described in Section \ref{Details}.
+Default parameters and control switched can be overridden in the
+parameter scripts.
+Additional calibrator model information can be entered as described in
+section \ref{calmodel}.
+The end of the parameter script contains switches to turn on and off
+various stages.
+
+\subsection{AIPS and Obit setup scripts}
+A script needs to be created giving the details of the AIPS and Obit
+installations. 
+This script is described in detail in Section \ref{Setup}.
+
+\subsection{Execute scripts}
+Each of the parameter scripts can be executed from the Unix shell by
+\begin{verbatim}
+ > ObitTalk EVLAContPipe.py AIPSSetup.py \
+      EVLAContParm\_myProject\_Cfg0\_Nch64.py
+\end{verbatim}
+where EVLAContParm\_myProject\_Cfg0\_Nch64.py is the name of your
+parameter script.
+
+This procedure should start from an archive data set and result in a
+set of calibrated data, images, reports, logs and various diagnostic
+plots, see Section \ref{products} for details.
+\section{Calibrator models}\label{calmodel}
+The standard EVLA flux density calibrators are all resolved in the
+more extended configurations and an accurate, wideband source model at
+an appropriate frequency is needed for good calibration.
+Calibrator source models using the Obit CLEAN components with spectra
+are distributed in \$OBIT/share/data.
+
+The EVLA calibration scripts operate on arrays of calibrator dict
+structures with the following entries:
+\begin{itemize}
+\item{\tt  Source:}       Source name as given in the SU table. 
+\item{\tt  CalName:}      Calibrator model Cleaned AIPS  map name 
+\item{\tt  CalClass:}     Calibrator model Cleaned AIPS  map class
+\item{\tt  CalSeq:}       Calibrator model Cleaned AIPS  map seq
+\item{\tt  CalDisk:}      Calibrator model Cleaned AIPS  map disk
+\item{\tt  CalNfield:}    Calibrator model No. maps to use for model
+\item{\tt  CalCCVer:}     Calibrator model CC file version
+\item{\tt  CalBComp:}     Calibrator model First CLEAN comp to use, 1/field
+\item{\tt  CalEComp:}     Calibrator model Last CLEAN comp to use, 0=>all
+\item{\tt  CalCmethod:}   Calibrator model Modeling method, 'DFT','GRID','    '
+\item{\tt  CalCmodel:}    Calibrator model Model type: 'COMP','IMAG'
+\item{\tt  CalFlux:}      Calibrator model Lowest CC component used
+\item{\tt  CalModelSI:}   Calibrator Spectral index
+\item{\tt  CalModelFlux:} Parameterized model flux density (Jy)
+\item{\tt  CalModelPos:}  Parameterized model Model position offset (asec)
+\item{\tt  CalModelParm:} Parameterized model Model parameters (maj, min, pa, type)
+\end{itemize}
+These dicts are created in the parameter script by routine
+EVLACal.EVLACalModel for the various types of calibrators.
+EVLACal.EVLAStdModel is then used to fill in the details about
+calibrators it knows about.
+Information not known to these scripts may be entered into the
+calibrator dict structure in the parameter script.
+
+\section{AIPS and Obit Setup}\label{Setup}
+These scripts use data in AIPS format and some AIPS tasks; the
+location of the AIPS data directories and other details as well as the
+Obit initialization are given in the AIPSSetup.py file.
+The items that need to be specified are:
+\begin{itemize}
+\item {\tt adirs} \\
+A list of the AIPS data directories as a tuple,  the first element is
+the URL of the ObitTalkServer or None for local disk.
+The second element is the directory path.
+\item {\tt fdirs} \\
+A list of the FITS data directories as a tuple,  the first element is
+the URL of the ObitTalkServer or None for local disk.
+The second element is the directory path.
+\item {\tt user} \\
+The AIPS user number to be used.
+\item {\tt AIPS\_ROOT} \\
+The root of the AIPS system directories.
+An environment variable of this name is set by the AIPS startup scripts.
+Python None will default to your AIPS setup.
+\item {\tt AIPS\_VERSION} \\
+The  AIPS version.
+An environment variable of this name is set by the AIPS startup scripts.
+Python None will default to your AIPS setup.
+\item {\tt DA00} \\
+The  AIPS DA00 directory (TDD000004; file needed).
+An environment variable of this name is set by the AIPS startup
+scripts.
+Python None will default to your AIPS setup.
+\item {\tt OBIT\_EXEC} \\
+The root directory of your Obit directories.
+Python None will default to your system installation on NRAO Linux machines.
+\item {\tt noScrat} \\
+A list of AIPS disks to avoid for scratch files, max. 10.
+\item {\tt nThreads} \\
+The maximum number of threads allowed to be used.
+This generally should not be more than the number of cores available.
+\item {\tt disk} \\
+The AIPS disk number to use for temporary storage of the data and images.
+\end{itemize}
+
+An example AIPSSetup.py file follows, items which may need to be
+modified are marked by {\tt <====}.:
+\begin{verbatim}
+#   <====  Define AIPS  and FITS disks
+adirs = [(None, "/export/data_1/GOLLUM_1"),
+         (None, "/export/data_1/GOLLUM_2"),
+         (None, "/export/data_1/GOLLUM_3"),
+         (None, "/export/data_1/GOLLUM_4"),
+         (None, "/export/data_2/GOLLUM_5"),
+         (None, "/export/data_2/GOLLUM_6"),
+         (None, "/export/data_2/GOLLUM_7"),
+         (None, "/export/data_2/GOLLUM_8")]
+fdirs = [(None, "/export/users/aips/FITS")]
+
+############################# Initialize OBIT #####################
+err     = OErr.OErr()
+user    = 104                      # <==== set user number
+ObitSys = OSystem.OSystem ("Script", 1, user, 0, [" "], \
+                         0, [" "], True, False, err)
+OErr.printErrMsg(err, "Error with Obit startup")
+# Setup AIPS
+AIPS.userno = user
+AIPS_ROOT    = "/home/AIPS/"        # <==== set root of AIPS
+AIPS_VERSION = "31DEC12/"           # <==== set AIPS version
+DA00         = "/home/AIPS/DA00/"   # <==== set AIPS DA00 directory
+#  <====  Define OBIT_EXEC for access to Obit Software 
+OBIT_EXEC    = "/export/data_1/obit/ObitInstall/ObitSystem/Obit/"
+# setup environment
+ObitTalkUtil.SetEnviron(AIPS_ROOT=AIPS_ROOT, AIPS_VERSION=AIPS_VERSION, \
+                        OBIT_EXEC=OBIT_EXEC, DA00=DA00, ARCH="LINUX", \
+                        aipsdirs=adirs, fitsdirs=fdirs)
+# List directories
+ObitTalkUtil.ListAIPSDirs()
+ObitTalkUtil.ListFITSDirs()
+noScrat     = []                   # <==== AIPS disks to avoid 
+nThreads    = 6                    # <====  Number of threads allowed
+disk        = 1                    # <====  AIPS disk number
+\end{verbatim}
+
+\section{The Process Overview}
+
+The scripted processing uses the following processes.
+Many of the default processing parameters are frequency dependent and
+may be overridden and the various steps may be turned on or off.
+
+The general approach to calibration and editing is to first apply
+editing steps which can be applied to uncalibrated data to remove the
+most serious RFI.
+Then an initial pass at calibration is done and a pass at the editing
+needing calibrated data.
+Calibration aids in the editing as calibrator data with no detections
+are effectively removed and calibration with deviant amplitude
+solutions are also removed.
+Once the first pass at editing and calibration is completed, the
+initial calibration tables are deleted and the calibration repeated.
+This procedure removes the bulk of the RFI infected and other bad
+data.
+
+Diagnostic plots at various stages of the processing are generated.
+These  include plots of calibration results as well as sample spectra.
+
+The calibrated data are then imaged using wideband imaging if
+appropriate. 
+Images, calibrated data and calibration tables are saved to FITS files
+and a number of source dependent diagnostic plots are generated.
+Finally, an HTML report is generated allowing easy examination and
+access to the various products.
+A processing log is kept containing most details of the processing.
+
+Following is a summary of the processing.
+Details and parameters which may be modified are described in a
+section \ref{Details}.
+
+\begin{enumerate}
+\item Generation of parameter scripts from ASDM
+\item Data converted to AIPS format
+\item Hanning if necessary
+\item Clear previous calibration
+\item Copy initial FG table 
+\item Apply Special Editing
+\item Quack
+\item Shadow Flagging 
+\item Initial Time domain flagging
+\item Initial Frequency domain flagging
+\item Initial RMS flagging of calibrators
+\item Parallactic angle correction
+\item Find reference antenna 
+\item Plot raw sample spectra 
+\item Delay calibration
+\item Bandpass calibration
+\item Amp \& phase Calibration 
+\item Flagging of calibrated data
+\item Recalibration 
+\begin{enumerate}
+\item Parallactic angle correction
+\item Delay calibration
+\item Bandpass calibration
+\item Amp \& phase Calibration 
+\item Flagging of calibrated data
+\end{enumerate}
+\item Calibrate and average data
+\item Cross Pol clipping
+\item R-L  delay calibration
+\item Instrumental polarization calibration
+\item R-L phase calibration
+\item VPol clipping
+\item Plot final calibrated spectra 
+\item Image targets
+\item Generate source report
+\item Save images, calibrated data
+\item Contour plots of images
+\item source UV diagnostic plots
+\item Generate HTML summary
+\item Cleanup AIPS directories
+\end{enumerate}
+
+\section{Script Stage Details}\label{Details}
+Details of the various processing steps and the parameters are
+described in the following.
+Processing parameters are stored in a python dict named parms and may
+be specified in the parameter script as
+\begin{verbatim}
+parms["parameter"] = value
+\end{verbatim}
+Tables in the following give the parameter name, default value and a
+description.
+Note: Not all stages are performed by default.
+
+\begin{enumerate}
+\item Generation of parameter scripts from ASDM\\
+This step is performed from ObitTalk to generate the parameter
+script(s).
+\begin{verbatim}
+>>> import EVLACal
+>>> ASDMRoot = "/export/myData/12A-999.sb9332941.eb9360588.../"
+>>> EVLACal.EVLAPrepare(ASDMRoot, err, project="myData")
+\end{verbatim}
+This will parse the ASDM indicated and generate a parameter script for
+each configuration/number of channel combinations needed to process
+all data.
+Note: this will also include configurations used for calibration
+purposes only, such as offset pointing, so use Obit task ASDMList to see
+which configurations have useful data.
+For each configuration/number of channel, a parameter script with name
+of the form EVLAContParm\_$<$project$>$\_Cfg$<$config$>$\_Nch$<$no channels$>$.py
+will be generated.
+
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+ASDMRoot & & Root directory of ASDM/BDF data\\
+project  & & Project name, 12 or fewer characters, \\
+ & & used as AIPS file name \\
+template & EVLAContTemplateParm.py & name of the parameter template
+file\\
+parmFile &  & Name of desired parameter file, \\
+ & & generated if not given\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item General control parameters\\
+These parameters control the naming of files, whether UV data is used
+in compressed form and script debugging control.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+project  &  &  Project name, 12 or fewer characters,  used as AIPS file name\\
+ session &  &  session code, generated from configuration and no. channels\\
+ band  &  &  Observing band code, derived from ASDM frequencies\\
+ Compress & False &  Use compressed UV data?\\
+ check & False &  Only check script, don't execute tasks\\
+ debug & False &  run tasks debug\\
+  &  &  \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Data converted to AIPS format\\
+The bulk of the processing uses AIPS format UV data and images.
+The ASDM/BDF data is first converted to an AIPS data file using Obit/BDFIn.
+The details of the AIPS configuration are given in the AIPSSetup.py
+file provided to the processing script.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doLoadArchive  & True & Load AIPS data from archive? \\
+archRoot  &  &  User specified to create parameter script\\
+selConfig  &  &  Frequency configuration, generated from ASDM\\
+seq     & 1 &  AIPS sequence number to use \\
+selBand &   &  Data band-code, derived from ASDM\\
+selChan &   &  Number of spectral channels, derived from ASDM\\
+selNIF  &   &  Number of spectral windows (IFs), derived from ASDM\\
+calInt  &   &  Calibration table interval (min), EVLA configuration
+dependent\\
+  &  & A: 0.3, B:0.45, C:1.0, D:2.0\\
+doSwPwr & False  &  Apply gain corrections from Switched Power table\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Hanning \\
+At lower frequencies and compact configurations, RFI signals are
+frequently sufficiently strong and narrow to cause serious ``Gibbs''
+ringing due to the truncation of the lag spectra.
+Hanning smoothing can be used to suppress this effect.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doHann  &  &  Apply Hanning smoothing? EVLA configuration
+ and frequency dependent\\
+  &  & A:False, B:$\nu<$ 8 GHz, C:$\nu<$ 8 GHz, D:$\nu<$ 8 GHz\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Clear previous calibration\\
+If the script is restarted it is frequently desirable that previous
+attempts at calibration and editing be removed.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doClearTab   & True & Clear cal/edit tables? \\
+doClearGain  & True & Clear SN and CL tables $>$ 1? \\
+doClearFlag  & True & Clear FG tables $>$ 1? \\
+doClearBP    & True & Clear BP tables? \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Copy initial FG table \\
+To allow restarting of the flagging, the on-line flags which are in FG
+table 1 are copied to table 2 and new flags added there.
+This should be turned off if the script is restarted except at the beginning.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doCopyFG  & True & Copy FG 1 to FG 2? \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Apply Special Editing\\
+If some data are known to be bad, e.g. no receiver, then this
+information can be passed to the script.
+Each entry is a python dict with the following:
+\begin{itemize}
+\item{\tt timer:} The affected time range as a pair of strings of the
+form day/hour:min:sec.
+\item{\tt Ant:}A baseline specification as a pair of antenna numbers,
+if the second is zero, then all baselines to the first antenna number
+is flagged.  
+If the first is zero, then all antennas are flagged
+\item{\tt IFs:} Range of IFs (spectral windows) to flag.
+If the second is zero then all IFs higher than the first are flagged.
+\item{\tt Chans:} Range of channels to flag.
+If the second is zero then all channels higher than the first are flagged.
+\item{\tt Stokes:} Array of flags, 1$=>$flag, $0=>$ not flag; in order
+  RR, LL, RL, LR.
+\item{\tt "Reason:} Up to 24 characters giving reason.
+\end{itemize}
+an example:
+\begin{verbatim}
+parms["editList"] = [
+    {"timer":("0/00:00:0.0","5/00:00:0.0"),"Ant":[1,0],
+     "IFs":[1,0],"Chans":[1,0],  "Stokes":'1111',"Reason":"No Rcvr"}
+]
+\end{verbatim}
+
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doEditList  & False & Edit using editList? \\
+editFG      & 2     & Table to apply edit list to\\
+ editList   & [ ]   & List of data to flag \\
+  &  &  \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Quack\\
+Data at the beginning and end of each scan can be flagged using
+Obit/Quack. 
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doQuack       & True    & Quack data? \\
+quackBegDrop  & 0.1     & Time to drop from start of each scan (min) \\
+quackEndDrop  & 0.0     & Time to drop from end of each scan (min) \\
+quackReason   & "Quack" & Reason string \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Shadow Flagging \\
+In the more compact EVLA configurations, some antennas may shadow
+others at times.
+The affected data may be flagged using AIPS/UVFLG.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doShad  &      & Do shadow flagging? Configuration Dependent \\
+        &      & A:False, B:False, C:True, D:True\\
+shadBl  & 25.0 &  Minimum shadowing baseline (m)\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Initial Time domain flagging\\
+Obit task MednFlag can be used to flag data by amplitudes deviant from
+a running median by more than a specified amount.
+This is performed independently on each data stream (baseline,
+channel, IF, poln).
+At this point that data are uncalibrated.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doMedn       & True & Median editing? \\
+mednSigma    & 10.0 &  Sigma clipping level\\
+mednTimeWind & 1.0  &  Window width (min) for median flagging\\
+mednAvgTime  & 10.0/60. & Averaging time (min) \\
+mednAvgFreq  & 0    &  1$=>$avg mednChAvg chans, 2$=>$avg all chan,\\
+ & & 3$=>$avg chan and IFs\\
+mednChAvg    & 1    &  Number of channels to average\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Initial Frequency domain flagging\\
+The uncalibrated data can be examined for impulsive signals in
+frequency by comparison with a running median in each spectrum and
+deviant data are flagged using Obit task AutoFlag.
+Since bandpass corrections have not been determined and applied at
+this stage, structure in the instrumental bandpass will increase the
+apparent RMS in the baseline reducing the sensitivity of this test.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doFD1       & True &  Do initial frequency domain flagging?\\
+FD1widMW    & 31   &  Width of the initial FD median window\\
+FD1maxRes   & 5.0  &  Clipping level in sigma \\
+FD1TimeAvg  & 1.0  &  time averaging (min). for initial FD flagging\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Initial RMS flagging of calibrators \\
+Calibrators are expected to be simple and have  significant SNR so can
+be edited by having an RMS/average amplitude of less than some
+amount.
+Discrepant calibrator data can be flagged in this step using Obit task
+AutoFlag.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doRMSAvg   & True &  Edit calibrators by RMS/Avg?\\
+RMSAvg     & 3.0  &  Max RMS/Avg for time domain RMS filtering\\
+RMSTimeAvg & 1.0  &  Time averaging (min)\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Parallactic angle correction\\
+Phases are corrected for the effects of the parallactic angle using
+AIPS task CLCOR.
+The initial CL table is copied to CL 2 and modified.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+ doPACor & True &  Make parallactic angle correction?\\
+\hline
+\end{tabular}
+\end{center}
+%
+%
+\item Reference antenna\\
+The choice of reference antenna is of some importance but nothing in
+the ASDM helps in this choice.
+In addition, at least early EVLA data may have data for antennas with
+no receiver and such antennas are unsuitable for use as reference
+antenna.
+If the reference antenna is unspecified (0),
+this step runs Obit task Calib on the bandpass calibrator(s) (assumed to
+give good fringes) using the middle half of each spectrum.
+The resultant SN table is then examined for the antenna with the
+maximal amount of valid solutions and with the highest average SNR;
+this antenna is used as the reference antenna.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+refAnt  &  & Reference antenna, if $<=$ 0 then determine \\
+ BPCals &  & Determined from the ASDM \\
+ bpsolint1 &  &  Bandpass first solution interval, \\
+ & & configuration and  frequency dependent\\
+  &  &  \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Plot Raw spectra\\
+At this point plots of sample spectra can be made to display residual
+RFI and other problematic data,
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doRawSpecPlot  & True &  Plot diagnostic raw spectra?\\
+plotSource     & & Default is first bandpass calibrator\\
+plotTime       & & List of start and end time in days.\\
+  &  & Default is first bandpass calibrator scan\\
+refAnt  &  & Reference ant., baselines to refAnt are plotted \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Delay calibration\\
+Parallel hand group delays are solved for using the list of
+calibrator models in DCals.
+Obit task Calib solves for the delays which are then smoothed and
+applied to all source in a new CL table using Obit task CLCal.
+Solutions can be plotted as well as sample spectra applying the delay
+calibration.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doDelayCal"  & True &  Determine/apply delays? \\
+DCals  &  & The list of delay calibrators are determined from the ASDM, \\
+  &  & all amplitude, phase and bandpass calibrator. \\
+  &  & The list of models is determined from the parameter script \\
+  & & using standard calibrator models. \\
+delayBChan  &  &  first channel to use in delay solutions \\
+  &  &  max(2, 0.05*nchan)\\
+delayEChan  &  &  highest channel to use in delay solutions\\
+  &  &  min(nchan-2, nchan-0.05*nchan\\
+solInt  &  &  Solution interval (min), config. dependent\\
+  &  &  A:2 sec, B: 5 sec, C:10 sec, D:15 sec.\\
+refAnts  & [refAnt] & Delay reference ant., baselines to refAnt are plotted \\
+doTwo"  & True &  Use two baseline combinations in delay cal\\
+delayZeroPhs &  True &  Zero phase in Delay solutions?\\
+doSNPlot       & True &  Plot calibration solutions?\\
+doSpecPlot     & True &  Plot diagnostic calibrated spectra?\\
+plotSource     & & Default is first bandpass calibrator\\
+plotTime       & & List of start and end time in days.\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Bandpass calibration\\
+Bandpass calibration uses Obit task BPass and calibrator model list BPCals.
+BPass does a two pass calibration, the first doing a phase only
+calibration to straighten out the phases followed by a longer amplitude
+and phase calibration using blocks of channels.
+The resultant solutions are then combined into a BP table
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doBPCal  & True &  Determine/apply bandpass calibration? \\
+BPCals  &  & The list of bandpass calibrators is determined from the ASDM, \\
+  &  & The list of models is determined from the parameter script \\
+  & & using standard calibrator models. \\
+bpsolint1  &  &  BPass phase correction solution in min, frequency
+dependent: \\
+ & &  $\nu<1$ GHz: 10sec, L band:15 sec, S, C, Ku, K, Ka  band 10 sec,
+\\
+ & &  Q band 5 sec. \\
+bpsolint2  & 10.0 & BPass bandpass solution interval (min) \\
+bpsolMode  & 'A\&P'  &  Bandpass type 'A\&P', 'P', 'P!A'\\
+bpBChan1  & 1 &  Low freq. channel,  initial cal\\
+bpEChan1  & 0 &  Highest freq channel, initial cal, 0$=>$all\\
+bpBChan2  & 1 &  Low freq. channel for BP cal\\
+bpEChan2  & 0 &  Highest freq channel for BP cal,  0$=>$all \\
+bpChWid2  & 1 &  Number of channels in running mean BP soln\\
+bpDoCenter1  & None &  Fraction of  channels in 1st, overrides
+bpBChan1, bpEChan1\\
+bpUVRange  & [0.0,0.0] &  UV range for bandpass cal zeroes$=>$ all\\
+refAnt  &  & BP reference ant., baselines to refAnt are plotted \\
+doSpecPlot     & True &  Plot diagnostic calibrated spectra?\\
+plotSource     & & Default is first bandpass calibrator\\
+plotTime       & & List of start and end time in days.\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Amp \& phase Calibration \\
+Standard flux density calibrators have their flux densities entered
+into the SU table using Obit task SetJy, other calibrators have their
+flux density entries set to 1.0.
+All the amplitude and phase calibrators have Obit/Calib run using
+their models and doing amplitude and phase solutions.
+Solutions are then median window smoothed using Obit/SNSmo to time
+solSmo clipping really wild points.
+Obit task GetJy then solves for the flux densities for non flux
+density calibrators and adjusts the SU and SN tables. If doAmpEdit is
+True, solutions in each IF (spectral window) more than ampSigma from
+the mean are flagged both in the SN table and in FG table ampEditFG.
+Finally solutions are applied to the previous CL table to create a new
+CL table.
+Solution plots are written into file\\
+parms["project"]+"\_"+parms["session"]+"\_"+parms["band"]+"APCal.ps".
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doAmpPhaseCal  & True & Do amplitude and phase calibration? \\
+ACals  &  & The list of amplitude calibrators are determined from the ASDM, \\
+  &  & The list of models is determined from the parameter script \\
+  & & using standard calibrator models. \\
+PCals  &  &  The list of phase calibrators are determined from the ASDM\\
+refAnt  &  & Reference antenna \\
+solInt  &  &  Solution interval (min), config. dependent:\\
+  &  & A: 2 sec, B: 5 sec, , C:  10 sec, D: 15 sec.\\
+ampBChan  &  & first channel to use in A\&P solutions \\
+  &  &   max(2, 0.05*nchan)\\
+ampEChan  &  &  highest channel to use in A\&P solutions\\
+  &  &  min(nchan-2, nchan-0.05*nchan)\\
+solSmo  & 0.0 &  Smoothing interval for Amps (min)\\
+ampScalar  & False &  Ampscalar solutions?\\
+doAmpEdit  & True  & Edit/flag on the basis of amplitude solutions \\
+ampSigma  & 20.0 &  Multiple of median RMS about median gain to clip/flag\\
+ampEditFG  & 2 &  \\
+doSNPlot       & True &  Plot calibration solutions?\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Flagging of calibrated data\\
+Calibrated data are then edited using Obit/AutoFlag. 
+If recalibration is to be done, then this is only on the calibrators,
+else all sources.
+Data with amplitudes outside of a given range are flagged and data
+overly discrepant from a running median in frequency is flagged.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doAutoFlag  & True &  Autoflag editing after first pass calibration?\\
+IClip  & [20.0,0.1] &  AutoFlag Stokes I clipping\\
+minAmp  & 1.0e-5 & Minimum allowable amplitude \\
+timeAvg  & 0.33 &  AutoFlag time averaging in min.\\
+doAFFD  & True & do AutoFlag frequency domain flag \\
+FDmaxAmp  & IClip[0] &  Maximum average amplitude (Jy)\\
+FDmaxV  & VClip[0] &  Maximum average VPol amp (Jy)\\
+FDwidMW  & 31 & Width of the median window \\
+FDmaxRMS  & [5.0,.1] &  FDmaxRMS\\
+FDmaxRes  & 2.0  &  Max. residual flux in sigma\\
+FDmaxResBL  & 2.0 &  Max. baseline residual\\
+FDbaseSel  & [0,0,0,0] & Channels for baseline fit \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Recalibration \\
+If doRecal is true then the previous calibration tables are deleted
+and the calibration redone using the flag table from the first pass.
+\begin{enumerate}
+\item Parallactic angle correction\\
+As before.
+\item Delay calibration\\
+As before if doDelayCal2 = True.
+\item Bandpass calibration\\
+As before if doBPCal2 = True.
+\item Amp \& phase Calibration \\
+As before if doAmpPhaseCal2 = True.
+\item Flagging of calibrated data\\
+As before if doAutoFlag2 = True.
+\end{enumerate}
+\item Calibrate and average data\\
+The calibration and editing files are then applied with possible
+averaging in time and/or frequency.
+This uses Obit/Splat which writes a multi-source file.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doCalAvg  & True &  Calibrate and average?\\
+avgClass  & "UVAvg" & AIPS class of calibrated/averaged UV data \\
+seq  & 1 &  AIPS sequence \\
+CalAvgTime  &  &  Time for averaging calibrated UV data (min), config
+dependent: \\
+ & & A: 1 sec, B:3 sec, C: 10 sec, D: 20 sec. \\
+ & &  \\
+avgFreq  & 0 &  $0=>$ no averaging, $1=>$avg chAvg chans, $2=>$avg all
+chan, \\
+ & &$3=>$avg chan and IFs\\
+chAvg  & 1 & Number of channels to average \\
+CABChan& 1 &  First channel to copy \\
+CAEChan& 0 &  Highest channel to copy, $0=>$ all higher than CABChan\\
+CABIF  & 1 &  First IF to copy \\
+CAEIF  & 0 &  Highest IF to copy, $0=>$ all higher than CABIF\\
+Compress & False &  Write compressed UV data?\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Cross Pol clipping\\
+if XClip[0] not None,  cross polarized data with amplitudes $>$ XClip[0] are flagged.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+XClip  & [5.0,0.05] & AutoFlag cross-pol clipping, None$=>$ no flagging \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item R-L  delay calibration\\
+Determine right--left delays from a list of calibrators with R--L
+phase and rotation measure.\\
+This is not yet supported in the automated scripting.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doRLDelay  & False &  Do R-L delay calibration?\\
+RLDCal  &  &  Array of triplets of (name, R-L phase (deg at 1 GHz), \\
+ & &  RM (rad/m**2)) for polarization angle calibrators\\
+rlBChan     & 1            & First (1-rel) channel number\\
+rlEChan     & 0            & Highest channel number. $0=>$ high in data. \\
+rlUVRange   &  [0.0,0.0]   & Range of baseline used in kilo wavelengths, zeros=all\\
+rlCalCode   & '  '         & Calibrator code\\
+rlDoCal     & 2            & Apply calibration table? positive$=>$calibrate\\
+rlgainUse   & 0            & CL/SN table to apply, $0=>$highest\\
+rltimerange & [0.0,1000.0] & Time range of data (days)\\
+rlDoBand    & 1            & If $> 0$ apply bandpass calibration \\
+rlBPVer     & 0            & BP table to apply, $0=>$highest\\
+rlflagVer   & 2            & FG table version to apply \\
+rlrefAnt    & 0            & Reference antenna, defaults to refAnt\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Instrumental polarization calibration\\
+Determine instrumental polarization.\\
+This is not yet supported in the automated scripting and AIPS/PCAL is
+likely to fail.
+The old, single solution per IF is currently (May 2012) implemented
+as the most likely to work.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doPolCal  & False  &  Determine instrumental polarization?\\
+PCInsCals & []     &  Instrumental poln cals, name or list of names\\
+PCFixPoln & False  &  If True, don't solve for source polarization\\
+PCpmodel  & [0.,0.,0.,0.,0.,0.,0.] &  Instrumental poln cal source poln model.\\
+PCAvgIF   & False  &  If True, average IFs in ins. cal.\\
+PCSolInt  & 0.0    &  Instrumental solution interval (min), \\
+ & & $0=>$ scan average\\
+PCRefAnt  & 0      &  Reference antenna, defaults to refAnt\\
+PCSolType & "ORI-" &  Solution type, "ORI-", "RAPR"\\
+doPol     & False  &  Apply polarization cal in subsequent calibration?\\
+PDVer     & 1      &  Apply PD table in subsequent polarization cal?\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item R-L phase calibration\\
+Optionally redetermine R-L delays and 
+determine the R-L phase bandpass for each channel using Obit/RLPass
+and calibrators in RLDCal.
+RLPass uses a two pass calibration, the first using Stokes I and a
+phase only self calibration to remove phase fluctuations; the second
+pass fits the R-L phase in each running block of channels.
+Corrections are applied to the old BP table and a new BP table is created.
+Then IFs are adjusted using calibrator RLPCal, by imaging in each IF
+and forcing the summed Q and U components to the appropriate
+polarization angle. 
+Corrections are made  in the CL table and SU tables by AIPS/CLCOR.
+A spectral plot of the  RLPCal RL and LR data are made in file\\
+parms["project"]+"\_"+parms["session"]+"\_"+parms["band"]+"RLSpec2.ps"\\
+This is not yet supported in the automated scripting.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doRLCal  & False & Determine R-L phases? \\
+RLDCal   & None  &  Array of triplets of (name, R-L phase (deg at 1 GHz), \\
+ & &  RM (rad/m**2)) for polarization BP calibrators\\
+ & &  If None then no R-L delay recalibration \\
+rlBChan     & 1            & First (1-rel) channel number\\
+rlEChan     & 0            & Highest channel number. $0=>$ high in data. \\
+rlUVRange   &  [0.0,0.0]   & Range of baseline used in kilo wavelengths, zeros=all\\
+rlCalCode   & '  '         & Calibrator code\\
+rlDoCal     & 2            & Apply calibration table? positive$=>$calibrate\\
+rlgainUse   & 0            & CL/SN table to apply, $0=>$highest\\
+rltimerange & [0.0,1000.0] & Time range of data (days)\\
+rlDoBand    & 1            & If $> 0$ apply bandpass calibration \\
+rlBPVer     & 0            & BP table to apply, $0=>$highest\\
+rlflagVer   & 2            & FG table version to apply \\
+rlrefAnt    & 0            & Reference antenna, defaults to refAnt\\
+RLPCal      & None         & Polarization angle calibrator, None$=>$ skip. \\
+RLPhase     & 0.0          & R-L phase of RLPCal (deg) at 1 GHz\\
+RLRM        & 0.0          & R-L calibrator RM (NYI)\\
+rlChWid     & 1            & Number of channels in running mean RL BP soln\\
+rlsolint1   & 10./60       & First solution interval (min), $0=>$ scan average\\
+rlsolint2   & 10.0         & Second solution interval (min)\\
+rlCleanRad  & None         & CLEAN radius about center or None=autoWin\\
+rlFOV"      & 0.05         & Field of view radius (deg) needed to image RLPCal\\
+doPol       & False        & Apply polarization cal?\\
+PDVer       & -1           & Apply PD table?\\
+doSpecPlot  & True         & If True make spectral plot.\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item VPol clipping\\
+Circularly polarized data with amplitudes $>$ XClip[0] are flagged.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+VClip  & [2.0,0.05] & AutoFlag cross-pol clipping, None$=>$ no flagging  \\
+  &  &  \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Plot final calibrated spectra\\
+At this point, plots of sample spectra can be made to display
+calibrated data.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doSpecPlot     & True &  Plot diagnostic spectra?\\
+plotSource     &      & Default is first bandpass calibrator\\
+plotTime       &      & List of start and end time in days.\\
+refAnt         &      & Reference ant., baselines to refAnt are plotted \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Image targets \\
+All targets are imaged and deconvolved using Obit/Imager or
+Obit/MFImage if wideband imaging needed (fractional spanned bandwidth
+$\ge$ MBmaxFBW).
+Phase only and amp and phase calibration may be applied if sources
+exceed given thresholds.
+If wideband imaging is used, then the resultant images are cubes
+having planes:
+\begin{enumerate}
+\item Total intensity at reference frequency.
+\item Spectral index at reference frequency
+\item any higher order planes
+\item One plane for each of the coarse frequency samples.
+\end{enumerate}
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doImage     & True     & Image targets? \\
+targets     & []       & Target list set from ASDM, empty$=>$all\\
+seq         & 1        & AIPS sequence for images \\
+doPol       & False    & Apply polarization cal?\\
+PDVer       & -1       & Apply PD table?\\
+outIclass   & "IClean" & Image AIPS class\\
+Stokes      & "I"      & Stokes to image \\
+Robust      & 0.0      & Weighting robust parameter\\
+FOV         &          & Field of view radius in deg, average $\nu$ dependent:\\
+            &          & $\nu<1$ GHz: FWHM, L,S,C,X,Ku band: $0.5\times$FWHM\\
+            &          & K,Ka,Q Band: $0.25\times$FWHM\\
+Niter       & 500      & Max number of CLEAN iterations\\
+minFlux     & 0.0      & Minimum CLEAN flux density (Jy) \\
+minSNR      & 4.0      & Minimum Allowed SNR in self cal\\
+maxPSCLoop  & 1        & Max. number of phase self cal loops\\
+minFluxPSC  & 0.05     & Min flux density peak for phase self cal\\
+solPInt     &          & Phase self cal solution interval (min), $\nu$ dependent \\
+            &          &       $\nu<1$ GHz, L,C,X,Ku,K,Ka: 0.25, Q band:0.10\\
+solPMode    & "DELA"   & Delay solution for phase self cal\\
+solPType"   & "    "   & Solution type for phase self cal\\\
+maxASCLoop  & 1        & Max. number of Amp+phase self cal loops\\
+minFluxASC  & 0.5      & Min flux density peak for amp+phase self cal\\
+solAInt     &          & amp+phase self cal solution interval (min),
+$\nu$ dependent\\
+            &          & $\nu<1$ GHz, L,C,X,Ku,K,Ka,Q: 3.0\\
+solAMode    & "A\&P"   & Amp and phase self cal \\
+solAType    & "    "   & Solution type for Amp and phase self cal\\
+avgPol      & True     & Average poln in self cal?\\
+avgIF       & False    & Average IF in self cal?\\
+nTaper      & 0        & Number of additional imaging multi-resolution tapers\\
+Tapers      & [20.0,0.0] &  List of tapers in pixels\\
+do3D        & False    & Make ref. pixel tangent to celest. sphere for each facet\\
+noNeg       & False    & Allow negative components in self cal model?\\
+BLFact      & 1.01     & Baseline dependent time averaging for $>1.0$?\\
+BLchAvg     & True     & Baseline dependent frequency averaging?\\
+doMB        &          & Set in parameter script depending on spanned bandwidth\\
+MBnorder    & 1        & Order on wideband imaging \\
+MBmaxFBW    & 0.05     & max. MB fractional bandwidth\\
+CleanRad    & None     & CLEAN radius about center or None=autoWin\\
+\hline
+\end{tabular}
+\end{center}
+%
+\newpage
+\item Generate report\\
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doReport    & True     & Generate source report? \\
+targets     & []       & Target list set from ASDM, empty$=>$all\\
+seq         & 1        & AIPS sequence for images \\
+outIclass   & "IClean" & Image AIPS class\\
+Stokes      & "I"      & Stokes imaged \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Save images, calibrated data\\
+Images and calibrated/averaged data and calibration tables are written
+to FITS files.
+File names begin with \\
+parms["project"]+parms["session"]+parms["band"]
+followed by \\
+$<$source\_name$>$+$<$Stokes$>$+"Clean.fits" for images and
+"Cal.uvtab" for calibrated data and "CalTab.uvtab" for calibration
+tables from the original data.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doSaveImg & True &  Save target images to FITS?\\
+targets   & []   & Target list set from ASDM, empty$=>$all\\
+doSaveUV  & True & Save calibrated UV data for AIPS/FITAB format? \\
+doSaveTab & True &  Save calibration tables for AIPS/FITAB format?\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Contour plots of images\\
+Contour plots are generated for target images.
+Plot names are \\
+parms["project"]+"\_"+parms["session"]+"\_"+parms["band"]
+followed by the source name and ".cntr.ps" which are also converted
+to jpeg with the suffix "jpg".
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doKntrPlots & True &  Generate contour plots?\\
+targets   & []   & Target list set from ASDM, empty$=>$all\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item UV diagnostic plots\\
+Plots of amplitude vs. baseline length, real vs. imaginary and UV
+coverage are generated.
+Plot names are \\
+parms["project"]+"\_"+parms["session"]+"\_"+parms["band"]
+followed by the source name and ".amp.ps",  ".ri.ps", or ".uv.ps"
+which are also converted to jpeg with the suffix "jpg".
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doDiagPlots & True & Make UV diagnostic plots per source? \\
+targets   & []   & Target list set from ASDM, empty$=>$all\\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Generate HTML Summary \\
+Generate an HTML page with source statistics and links to the various
+plots.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doHTML  & True & Generate HTML reports? \\
+\hline
+\end{tabular}
+\end{center}
+%
+\item Cleanup \\
+AIPS data and image files are zapped.
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+doCleanup  & True & Clean out AIPS directories? \\
+\hline
+\end{tabular}
+\end{center}
+%
+\end{enumerate}
+
+\section {The Products}\label{products}
+
+\begin{itemize}
+\item Calibrated (u,v) dataset with calibration and flagging tables in
+AIPS FITAB format -- Tables from initial data and averaged
+visibilities per input dataset. 
+These files are\\
+parms["project"]+parms["session"]+parms["band"]+"Cal.uvtab"
+and parms["project"]+parms["session"]+parms["band"]+"CalTab.uvtab".
+\item FITS Images -- for each target object in files\\
+parms["project"]+"\_"+parms["session"]+"\_"+parms["band"]+\\
+source\_name+".IClean.fits".\\
+If wideband imaging is used, then the resultant images are cubes
+having planes:
+\begin{enumerate}
+\item Total intensity at reference frequency.
+\item Spectral index at reference frequency
+\item any higher order planes
+\item One plane for each of the coarse frequency samples.
+\end{enumerate}
+\item Diagnostic plots -- calibration and several per source.
+The project plots have prefix
+parms["project"]+"\_"+parms["session"]+"\_"+parms["band"] and are
+\begin{itemize}
+\item{\tt RawSpec.ps:} AIPS/POSSM plots of sample spectra with initial
+editing but no calibration applied.
+\item{\tt DelaySpec.ps:} AIPS/POSSM plots of sample spectra with initial
+editing and delay calibration applied.
+One set per pass through the calibration.
+\item{\tt BPSpec.ps:} AIPS/POSSM plots of sample spectra with initial
+editing and delay and bandpass calibration applied.
+One set per pass through the calibration.
+\item{\tt Spec.ps:} AIPS/POSSM plots of sample spectra with final
+editing and calibration applied.
+\item{\tt RLSpec2.ps:} AIPS/POSSM plots of sample RL and LR spectra
+with final editing and calibration applied.
+\item{\tt DelayCal.ps:} AIPS/SNPLT plots of delay calibration.
+\item{\tt APCal.ps:} AIPS/SNPLT plots of amplitude and phase calibration.
+\end{itemize}
+The source plots have prefix
+parms["project"]+"\_"+parms["session"]+"\_"+parms["band"] and are
+\begin{itemize}
+\item{\tt source\_name.cntr.jpg:} Source image contour plot as jpeg
+\item{\tt source\_name.cntr.ps:} Source image contour plot as postscript
+\item{\tt source\_name.amp.jpg:} Source amp. vs baseline plot as jpeg
+\item{\tt source\_name.amp.pdf:} Source amp. vs baseline plot as pdf
+\item{\tt source\_name.amp.ps:} Source amp. vs baseline plot as postscript
+\item{\tt source\_name.ri.jpg:} Source real vs imaginary plot as jpeg
+\item{\tt source\_name.ri.pdf:} Source real vs imaginary plot as pdf
+\item{\tt source\_name.ri.ps:} Source real vs imaginary plot as postscript
+\item{\tt source\_name.uv.jpg:} Source uv coverage plot as jpeg
+\item{\tt source\_name.uv.pdf:} Source uv coverage plot as pdf
+\item{\tt source\_name.uv.ps:} Source uv coverage plot as postscript
+\end{itemize}
+\item Reports and logs created during the process\\
+The logfile is\\
+parms["project"]+"\_"+parms["session"]+"\_"+parms["band"]+".log",
+and the HTML report is\\
+parms["project"]+"\_"+parms["session"]+"\_"+parms["band"]+".report.html".
+%\item Meta-data for a VOTable to describe the products
+\end{itemize}
+
+The file set comprising all files and the meta-data are stored in a single
+directory.  
+%For approved pipeline use, this directory is stored on the lustre
+%file system in NRAO Socorro.  From there it is ingested directly into
+%the NRAO archive. 
+
+%Sources that did not image acceptably are added to the failTargets
+%list.  This is referenced in the HTML Report.
+
+\clearpage
+
+\end{document}
