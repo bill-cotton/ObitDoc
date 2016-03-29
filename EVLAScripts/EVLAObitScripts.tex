@@ -312,7 +312,7 @@ script(s).
 >>> EVLACal.EVLAPrepare(ASDMRoot, err, project="myData")
 \end{verbatim}
 This will parse the ASDM indicated and generate a parameter script for
-each configuration/number of channel combinations needed to process
+each configuration/number of channels combinations needed to process
 all data.
 Note: this will also include configurations used for calibration
 purposes only, such as offset pointing, so use Obit task ASDMList to see
@@ -361,7 +361,7 @@ The ASDM/BDF data is first converted to an AIPS data file using Obit/BDFIn.
 The details of the AIPS configuration are given in the AIPSSetup.py
 file provided to the processing script.
 The output data file name is the Project+Session and the class is
-``UV''+band+''Raw'' if Hanning is to be uses, otherwise ``UVDa''+band.
+``UV''+band+''Raw'' if Hanning is to be used, otherwise ``UVDa''+band.
 \begin{center}
 \begin{tabular}{|l|c|l|}
 \hline
@@ -370,11 +370,13 @@ archRoot  & ?? &  User specified to create parameter script\\
 selConfig  & ?? &  Frequency configuration, generated from ASDM\\
 seq     & 1   &  AIPS sequence number to use \\
 selBand & ??  &  Data band-code, derived from ASDM\\
+selChBW & -1  &  Selected channel bandwidth, -1 = All\\
 selChan & ??  &  Number of spectral channels, derived from ASDM\\
 selNIF  & ??  &  Number of spectral windows (IFs), derived from ASDM\\
 calInt  & ??  &  Calibration table interval (min), EVLA configuration
 dependent\\
   &  & A: 0.3, B:0.45, C:1.0, D:2.0\\
+doSwPwr & False & Make EVLA Switched power corr? now done later\\
 \hline
 \end{tabular}
 \end{center}
@@ -673,9 +675,10 @@ delayBChan  &  &  first channel to use in delay solutions \\
   &  &  max(2, 0.05*nchan)\\
 delayEChan  &  &  highest channel to use in delay solutions\\
   &  &  min(nchan-2, nchan-0.05*nchan\\
-solInt  &  &  Solution interval (min), config. dependent\\
+delaySolInt  &  &  Solution interval (min), config. dependent\\
   &  &  A:2 sec, B: 5 sec, C:10 sec, D:15 sec.\\
 refAnts  & [refAnt] & Delay reference ant., baselines to refAnt are plotted \\
+gainUVRange & [0.0,0.0] & Range of baseline used in kilolambda, zeros=all\\
 doTwo  & True &  Use two baseline combinations in delay cal\\
 delayZeroPhs &  True &  Zero phase in Delay solutions?\\
 doSNPlot       & True &  Plot calibration solutions?\\
@@ -719,8 +722,11 @@ bpdoAuto  & False &  Use autocorrelations rather than cross?\\
 bpUVRange  & [0.0,0.0] &  UV range for bandpass cal zeroes$=>$ all\\
 refAnt  &  & BP reference ant., baselines to refAnt are plotted \\
 doSpecPlot     & True &  Plot diagnostic calibrated spectra?\\
+doBPPlot       & True &  Plot fitted bandpasses?\\
 plotSource     & & Default is first bandpass calibrator\\
 plotTime       & & List of start and end time in days.\\
+doAmpEdit  & True & Edit/flag on the basis of amplitude solutions\\
+ampSigma   & 10.0 & Multiple of median RMS about median gain to clip/flag\\
 \hline
 \end{tabular}
 \end{center}
@@ -740,6 +746,8 @@ True, solutions in each IF (spectral window) more than ampSigma from
 the mean are flagged both in the SN table and in FG table ampEditFG.
 Finally solutions are applied to the previous CL table to create a new
 CL table.
+Calibrator sources are ``self-calibrated'' and targets use the
+smoothed solutions. 
 Solution plots are written into file\\
 parms["project"]+"\_"+parms["session"]+"\_"+parms["band"]+"APCal.ps".
 \begin{center}
@@ -757,6 +765,7 @@ ampBChan  &  & first channel to use in A\&P solutions \\
   &  &   max(2, 0.05*nchan)\\
 ampEChan  &  &  highest channel to use in A\&P solutions\\
   &  &  min(nchan-2, nchan-0.05*nchan)\\
+gainUVRange & [0.0,0.0] & Range of baseline used in kilolambda, zeros=all\\
 solSmo  & 0.0 &  Smoothing interval for Amps (min)\\
 ampScalar  & False &  Ampscalar solutions?\\
 doAmpEdit  & True  & Edit/flag on the basis of amplitude solutions \\
@@ -848,7 +857,7 @@ XClip  & [5.0,0.05] & AutoFlag cross-pol clipping, None$=>$ no flagging \\
 \end{center}
 %
 \newpage
-\item R-L  delay calibration\\
+\item R-L  delay calibration (full polarization)\\
 Determine right--left (X-Y) delays from a list of calibrators with R--L
 phase and rotation measure.
 The function EVLACal.EVLAPrepare will search for sources in the Field
@@ -882,7 +891,7 @@ rlrefAnt    & 0            & Reference antenna, defaults to refAnt\\
 \end{center}
 %
 \newpage
-\item Instrumental polarization calibration\\
+\item Instrumental polarization calibration (full polarization)\\
 Determine instrumental polarization from a list of calibrators.
 The function EVLACal.EVLAPrepare sets this list to those in the Delay
 calibrator list.
@@ -924,7 +933,7 @@ PDVer     & 1      &  PD table to apply in subsequent polarization cal?\\
 \end{center}
 %
 \newpage
-\item R-L phase calibration\\
+\item R-L phase calibration (full polarization)\\
 Determine R-L phase bandpass for each channel using Obit/RLPass
 and calibrators in RLDCal.
 The function EVLACal.EVLAPrepare will search for sources in the Field
@@ -939,7 +948,9 @@ the RL and LR correlations, the R-L phase calibration is performed.
 RLPass uses a two pass calibration, the first using Stokes I and a
 phase only self calibration to remove phase fluctuations; the second
 pass fits the R-L phase in each running block of channels.
-%Corrections are applied to the old BP table and a new BP table is created.
+RLPass itself is run multiple times for better convergence.
+In each run corrections are applied to the old BP table and a new BP
+table is created. 
 %Then IFs are adjusted using calibrator RLPCal, by imaging in each IF
 %and forcing the summed Q and U components to the appropriate
 %polarization angle. 
@@ -980,6 +991,7 @@ doSpecPlot  & True         & If True make spectral plot.\\
 \end{tabular}
 \end{center}
 %
+\newpage
 \item VPol clipping\\
 If VClip is not None, data with circularly polarized amplitudes $>$
 VClip[0] are flagged. 
@@ -1035,6 +1047,7 @@ FOV         &          & Field of view radius in deg, average $\nu$ dependent:\\
             &          & $\nu<1$ GHz: FWHM, L,S,C,X,Ku band: $0.5\times$FWHM\\
             &          & K,Ka,Q Band: $0.25\times$FWHM\\
 Niter       & 500      & Max number of CLEAN iterations\\
+UVRange     & [0.0,0.0]& Range of baseline used in kilo wavelengths, zeros=all\\
 minFlux     & 0.0      & Minimum CLEAN flux density (Jy) \\
 minSNR      & 4.0      & Minimum Allowed SNR in self cal\\
 maxPSCLoop  & 1        & Max. number of phase self cal loops\\
@@ -1050,6 +1063,7 @@ $\nu$ dependent\\
             &          & $\nu<1$ GHz, L,C,X,Ku,K,Ka,Q: 3.0\\
 solAMode    & "A\&P"   & Amp and phase self cal \\
 solAType    & "    "   & Solution type for Amp and phase self cal\\
+refAnt      &      & Reference ant., for self cal, def. determined by script \\
 avgPol      & True     & Average poln in self cal?\\
 avgIF       & False    & Average IF in self cal?\\
 nTaper      & 0        & Number of additional imaging multi-resolution tapers\\
@@ -1062,6 +1076,8 @@ doMB        &  ??      & Set in parameter script depending on spanned bandwidth\
 MBnorder    & 1        & Order of wideband imaging \\
 MBmaxFBW    & 0.05     & max. MB fractional bandwidth\\
 CleanRad    & None     & CLEAN radius about center or None=autoWin\\
+PBCor       & True     & Make primary beam correction when finished\\
+antSize     & 24.5     & Antenna diameter for primary beam correction (m) \\
 \hline
 \end{tabular}
 \end{center}
